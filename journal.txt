@@ -1,0 +1,161 @@
+
+29 July - Try Hack Me, burpsuite and SQL injection
+Sql injection
+
+https://tryhackme.com/r/room/sqlinjectionlm
+
+TL;DR
+Do labs to learn SQL and to complete objectives, which you can then add to your resume as actual experience.
+Reading a list of keywords and their use is like trying to learn a language by reading a dictionary, but never getting real examples of the word in actual conversation. You’re wasting time and you’re not actually practicing the way the thing is used.
+BEWARE: Crummy bootcamps actively WANT you to waste your time so you renew your subscription without moving on. If you succeed, these predatory “training” companies are out of a customer.
+
+Relational databases are basically collections of spreadsheets, and you use special words to filter your results of finding entries in the spreadsheets that match certain criteria.
+It’s pointless to go into further speculation without examples, and none of the details stick without direct demonstration; sadly this is lacking in any of the training I’ve encountered thus far, thus my own relative ignorance of what any of this means in a practical sense. 
+One cannot derive practical application from impractical training scenarios, after all.
+
+A “database” is a term thrown around a lot without people stopping to think about what it actually means. In the context of SQL and relational or non-relational databases, we’re talking about a collection of information. 
+I was rather let down to discover how mundane “data” really is. Entries of names or dates of accessing a program are both examples of data. There’s nothing mystical about it, although the way the information may be stored is sometimes cryptic, like how dates could follow a time-delta format as a float number. I don’t want to get distracted by details, but it’s enough to say that there are a lot of such small details that are not covered in any straightforward coding boot-camp or college course, collectively, assemble together into a greater whole of knowledge about what to expect and how you can interact with data.
+
+
+Blind sql injection uses something like 
+' OR 1=1;—
+Because we’re trying to close a statement
+SELECT * from table1 Where password =’
+
+Usually, the string from the input field is just directly passed in, and something afterward will close the apostrophe, back-tick, or double quotes. We can comment this out with the semicolon and double dash, eliminating any syntax errors by telling the program to ignore any characters coming thereafter.
+Syntax may vary, so multiple variations of quotes or backticks might have to be used to accomplish this. This is usually blind injection since we’re probably not going to get any feedback on our failures or not.
+The 1=1 is just a flat TRUE statement that we’re using in place of looking for a match (like matching a user-name to a password). Instead of matching, we just return true as if a match has been made, as far as the data is concerned.
+….
+SELECT * from blog where id=2;--
+
+Which will return the article with an ID of 2 whether it is set to public or not.
+
+
+Apparently you need to enumerate the number of database columns before you can do anything interesting? Unclear demonstration.
+A boolean value (like a username being taken or not) is tampered with using 
+admin123' UNION SELECT 1,2,3;-- 
+To test if there are 3 columns via union select.
+Demonstration is hazy. Refactoring requested for clarification.
+Mentions manually cycling through numbers without a programmatic solution — immediately dismissed as plebeian drivel. Show me a bash script or just get to the bloody point.
+…
+
+Burpsuite Basics, Room 1
+
+https://tryhackme.com/r/room/burpsuitebasics
+TL;DR
+This room does not teach anything practical and is a waste. 
+Move along to something actually useful. They don’t even set up the demonstrations correctly and you can’t even follow them in the sandbox provided.
+
+Burpsuite targets web as well as mobile applications
+Burp proxy allows interception and modification of web requests
+	- “So that’s like my web spiders, huh? In python, we use the ‘requests’ library to communicate web requests through an automated script. I’ve used it before to navigate to various urls and then scan their html content for keywords.”
+There’s a lot of functionalities in burp suite, and going over them all will make your eyes glaze over, but the sequencer is the only one that jumps out as interesting.
+It looks at how random tokens are, possibly finding patterns if the devs were lazy by basing tokens off a simple time delta as opposed to a secure algorithm. A lot of data that looks random to human eyes ain’t so under the hood.
+
+Needed to download and set up Burp Suite Community ver. [Urgh, more downloads and instillation grunt work… best to just go through the motions and get this over with…]
+
+Saying “familiarize yourself with this” without giving a practical demonstration is drivel and dismissed with just as much thought as was put into it. Lazy scrub.
+Every theoretical word better play into something of importance, as I’ve literally read through several textbooks of “theory” while encountering zero substantial demonstration therein. I’m here to get practice, not a lecture, so don’t tell me. Show me, or get tossed in the can like the trash you are.
+
+
+The demonstration could not be properly followed due to improper instruction on how the hell to even send a request in the broken sandbox environment. 
+If you don’t give instructions and the program breaks down, I’m not going to scratch my head trying to figure out things you were supposed to include in the lesson plan. 
+I’m not going to fill in blanks that you’ve overlooked when you’re supposed to be the content creators. You have failed, again, at making a meaningful room.
+
+
+Burp suite repeater review:
+https://tryhackme.com/r/room/burpsuiterepeater
+
+Words do not constitute a demonstration. There’s a lot of empty fluff before the practical portion, and even when there’s supposedly a hands on part, it skips over actually showing HOW to sent a request via the repeater and how the html pops up. Yes, technically this is documented elsewhere, but I should not have to zig-zag back and forth between pages.
+
+
+Process;
+Enable burpsuite, make sure the burp’s browser allows the browser to open correctly (check settings if the button to open a browser on the proxy tab doesn’t work).
+Navigate to the page in the browser
+In burpsuite, go to proxy, right click on the HTML soup and send to repeater
+Send to get the response 
+Use split view to see both request and response html soup at the same time
+
+“Using Inspector (or manually, if you prefer), add a header called FlagAuthorised and set it to have a value of True, as shown below:”
+
+So you pull this variable out of thin air, don’t even explain that it’s some token that’s just magically in our possession, and don’t explain its functionality either? You’re literally making things up, and this is the very essence of a contrived example, failing to DEMONSTRATE anything PRACTICAL.
+Great. I’ve learned nothing, and this is a bad lab. Pathetic.
+
+----
+
+[interlude to complete the google cybersecurity cert]
+
+# LabJournal-cybersecurity-
+3 July 2024
+Splunk and Google Chronicle
+
+Signed up for splunk cloud to run a simulation on a .zip file with the packets simulating network activity.
+Reviewed basic search, syntax, and navigation of splunk.
+
+index=main host=mailsv fail* root
+Within the main index being examined, find entries with the host of “mailsv” find the keyword “fail*” as connected to events with the keyword “root”.
+We want this because we’re looking for failed attempts to access a root account as our objective.
+
+Chronicle:
+https://demo.backstory.chronicle.security/?warstory=
+
+Notice! : the time-frame must be adjusted for the year 2023, january 1 to february 24th to capture the proper event timeframe used in this exercise. 
+The official google cybersecurity course FAILS TO DOCUMENT THIS time-frame factor, so even the big names got room for improvement when it comes to educational material.
+
+
+Technical details:
+For some reason, the google cybersecurity course really wants you to know these distinctions —>
+Splunk searches through ”raw logs”, which is slow, but doesn’t need normalized data
+Chronicle searches through UDM, which requires normalized data
+Suricata only makes 2 log types. How many log types does suricata make? Only two. Alert and network telemetry.
+
+
+2 July 2024 https://www.cloudskillsboost.google/focuses/36995032?parent=lti_session
+
+Suricata and logging
+sudo suricata -r sample.pcap -S custom.rules -k none
+The -r sample.pcap option specifies an input file to mimic network traffic. In this case, the sample.pcap file.
+The -S custom.rules option instructs Suricata to use the rules defined in the custom.rules file.
+The -k none option instructs Suricata to disable all checksum checks.
+Established how to define a rule, examining its component parts, then how to run a custom rule
+
+Eve.json files normally can’t be read by simply using cat; jq is needed;
+jq . /var/log/suricata/eve.json | less
+Q will quit in less,
+F scrolls to next page, B scrolls up to the previous page
+
+Outputs of the jq file can be searched for keywords by “piping” the keyword you want into grep. For example I search for “severity” in this.
+jq . /var/log/suricata/eve.json | less | grep "severity"
+
+Further fields can be targeted as such:
+jq -c "[.timestamp]" /var/log/suricata/eve.json
+(which targets the time-stamp field within the JSON-like strucure)
+
+
+jq . /var/log/suricata/eve.json | less | grep "alert" -A2    
+
+(get 2 lines after the target is found)
+-B is before, -C will give before and after
+
+Exchange the “X” below with a “flow id” and the details for that particular event can be viewed in full.
+jq "select(.flow_id==X)" /var/log/suricata/eve.json
+
+
+1 July 2024:
+Wireshark lab : 1hr packet analysis lab https://www.cloudskillsboost.google/focuses/36975220?parent=lti_session
+
+  - simulated network activity with a VM, then captured the activity in wireshark.
+  - basic search functions and filtering covered
+  - introduced identifying packet structure and where to find information like headers, sending IP, etc.
+  - syntax for filters and search introduced
+  - (write-up details pending)
+
+
+TCPdump lab : 30 mins
+
+  - basic syntax and reading outputs
+  - tcpdump -D (show available network devices that can be listened to)
+  -  -v flag toggles verbose output, key for more information
+
+June 29:
+Byte-wise file comparison using Sha256 analysis and CMP to compare the byte position differences between two files.
