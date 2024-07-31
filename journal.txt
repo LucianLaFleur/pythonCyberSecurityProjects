@@ -1,3 +1,66 @@
+July 30
+SUMMARY:
+Simulated credential stuffing attacks with burpsuite, using captured password and username lists to brute force login credentials.
+Involved using proxy browser to capture requests and modify them.
+Also configured payloads to iterate over a pitchfork-position attack within the intruder functionality of Burpsuite.
+
+Configured a custom macro to capture a session token, so as to bypass logins that required a session token with each login attempt. This targeted specific fields identified in the response request, then used them with the “loginToken” as a header item and the “session” variable as a cookie.
+
+Notes and corrections to coursework on Jul 30, 2024
+
+Actually useful note:
+“The Battering Ram attack type is useful when we want to test the same payload against multiple positions at once without the need for sequential substitution” —> the unspoken part here is that Sniper helps with sequential substitution.
+It would be more useful to see a table side-by-side showing all fields substituted with the input items in battering ram, as opposed to the combination-lock iterations done with the sniper mode inputs.
+
+The “pitchfork” section only gives one demonstration and fails to iterate, so I cannot clearly explain the significance of that attack mode. 
+I think it’s a one-to-one situation where you already have an association made and you’re feeding in possible name/password combos.
+A realistic demo would be nice to clarify this, but, as expected, tryHackMe is lacking in that department.
+
+Burpsuite repeater : task 7 
+This is taught incorrectly through having no demonstration of what “extreme inputs” means. A hint allegedly says putting in massive numbers or unexpected strings will cause a 500 error, but twelve iterations of giant numbers, strings, and all sorts of combinations of special characters, and I only get 404 errors.
+This lesson is just done wrong.
+
+Task 8 kind of explains how to do an sql injection attack with a captured request, which we get by using proxy and feeding in a url. Then, we take the intercepted browser request and send it to repeater for manipulation, running a bunch of SQL statements through an injection vulnerability given how part of the url request is essentially a client-side exposure to the data tables.
+None of this is explained clearly in terms of how to identify what statements to use in what circumstances, so the value-add is minimal. 
+The example, as usual, is contrived and not particularly informative with such a shallow demonstration. 
+The SQL statements ARE clearly documented in this step, allowing for experimentation, but the instructions do not explain what output to look for, nor what its significance is. Yeah, there’s a single screenshot of output, but that’s not enough to cover multiple variations of SQL statements, the progression of which is not clarified at all.
+
+Task 10: practical example:
+Repeatedly, the attack box is not working, whereby the proxy will not forward the request and the page just hangs. This happened at multiple stages randomly and made this a headache, not a learning experience.
+I have no idea how the workflow is supposed to go because I can’t follow the steps when your browser hangs and no resolution is offered to a problem that’s not even mentioned as a possibility, but becomes a speedbump to the course.
+
+Step 4
+“
+In the "Positions" sub-tab, ensure that only the username and password parameters are selected. Clear any additional selections, such as session cookies.
+“ 
+No documentation given as to what these paramaters are in the window. Give a screenshot, not a word salad.
+
+Step 9;
+When launching the attack, I thought dismissing the alert window cancels out of the attack. It auto-minimizes the window with no visual indication that it’s still active, nor is there a straightforward alt-tab to get back to it. 
+This is not mentioned in the instructions, and is an unexpected program behavior. More clarity is needed in instructions, or screenshots. This is very bad course design to ignore this strange behavior because you can’t see the attack results through the pop-up, and dismissing it minimizes the window. 
+Address this issue.
+
+INCORRECT INFO:
+The item that is different has a longer response length, not a shorter one as the demonstration claims. I have a screenshot of this to prove it. 
+I’m baffled, this is just wrong and you lied to me.
+
+Support login page hangs, this became a roadblock after 20 minutes of trying and retrying with no resolution. Your box is broken and this environment cannot allow me to continue. I’m stuck at logging in as m.rivera with the letmein1 password. The browser does not come up even after forwarding the proxy capture. It’s just broken, so I don’t know what to say. It can’t be done.
+
+
+task 19, step 9
+“
+Unfortunately, "recursive grep" won't work here due to the redirect response, so we can't do this entirely within Intruder – we will need to build a macro.
+“
+You have not introduced what any of these terms mean, let alone demonstrated anything you’re talking about. Why even mention something out of the blue that hasn’t been covered in this lab or in the prerequisites leading up to this lab either?
+
+
+“As it stands, this macro will now overwrite all of the parameters in our Intruder requests before we send them; this is great, as it means that we will get the loginTokens and session cookies added straight into our requests”
+This is word-salad and doesn’t make sense
+
+
+“Note: You should be getting 302 status code responses for every request in this attack. If you see 403 errors, then your macro is not working properly.”
+This note is good
+Make more notes like this on the mentioned behavior expectations, such as the browser hanging and the attack window disappearing.
 
 29 July - Try Hack Me, burpsuite and SQL injection
 Sql injection
