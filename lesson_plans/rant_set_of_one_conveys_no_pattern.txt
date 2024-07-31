@@ -1,0 +1,14 @@
+Burpsuite intruder (Educational material rant):
+Possibly useful calculation, sadly these idiots gloss over the examples so it’s poorly explained;
+`
+The total number of requests made by Intruder Sniper can be calculated as requests = numberOfWords * numberOfPositions.
+`
+To clarify: a wordlist of 80 items, and an attack vector with 2 items (name and password) would be 80 * 2 or 160 requests in total.
+If there’s 4 fields, say, for “username, alias, login name, and password” and we have that same list of 80 words, then the number of requests becomes 80 * 4.
+
+Educational content creators, notice what I did there: I took the simple target scenario as a single example, but that is not enough. I CHANGED one variable, (the number of fields) and then showed how that changed the OUTPUT (the number of total requests).
+You, as an educator, must identify these dynamic elements that are important because the students don’t know. They’re here to learn, after all. 
+So, identify important elements, simplify them, then build up to more complex demonstrations by showing how inputs alter output results. 
+It’s not hard, it just takes effort, and I’m sick of seeing lazy work in these sub-par courses where these idiots think one example with NO VARIATIONS somehow is enough. It’s not. 
+An isolated example DOES NOT constitute a meaningful demonstration. It’s only by seeing a PATTERN that we can identify what is meaningful and how.
+A set of 1 cannot convey a pattern.
