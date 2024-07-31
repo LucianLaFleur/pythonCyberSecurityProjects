@@ -1,0 +1,88 @@
+Educational lesson plan: Burp suite cluster bombs: reviewing OSINT with a tabletop-style exercise. 
+
+Before we even start the exercise, we need to tell our students what our objectives are. Not a summary, but a set of goals we’re trying to accomplish through the various tasks, so as to justify the strain of the exercise. After all, you’re not going to build muscle by lifting weights in an unnatural way that just screws up your back and leaves you with nothing but a slipped spinal disc and a huge hospital bill. (Or, at least, we Americans have to worry about that hospital bill thing).
+So, what’s the scenario and what’s goal?
+Our goal is to impersonate an admin’s credentials to gain control over a power plant in hostile territory so we can shut them down. 
+We’ve identified a login portal, and we’re using burpsuite to assist in the infiltration attempt. There are 3 kinds of information we need for getting in: A birthday, username, and password.
+There is a large number of possible people who work for Evil Corp, our enemy in this scenario, and we need to figure out how to overcome them. We do not know who is an admin directly, but we might be able to find people who work for Evil Corp and get further info from there.
+
+Simply, we’re gathering intel for 3 lists of information. 
+The Burp Suite Cluster Bomb will allow us to make combinations, feeding in info from multiple source lists into multiple fields so we try out all the possibilities. 
+We are only preparing for this attack, since we might get locked out after a certain number of tries are exceeded. We assume we will have 99 attempts, so we want to get under that number. 
+(write this number on a board or have it very clear in a slide-show presentation to make it clear this is our goal).
+99 attempts may seems a bit generous, but it can be deceptively tough when dealing with combinations.
+
+
+
+Rules for this scenario:
+Initially, we’re rolling 3d6 for each field, so an average of about 10 items for each one.
+This is deceptive, because, on average, we’re having 10 for each of our three fields, but the combinations are multiplicative. That means it’s 10 * 10 * 10, or an average of 1,000 possibilities.
+We’re going over reconnaissance, and when we figure out other ways to get info, we’ll refine our lists down.
+After the initial amount, we get to subtract 1d6 from subsequent investigations that you’ll come up with.
+We are brainstorming reconnaissance to figure out how many requests we will need to send to follow up on all our leads. In our scenario, we want to roll low numbers initially to get few leads, and then we want higher numbers to subtract dummies away.
+
+So, let’s start with brainstorming how we could get info for each of these things: birthdays, usernames, and passwords. Perhaps OSINT or other methods of intel gathering could tip us off as to some possibilities.
+(Instead of pulling info out of thin air, let the students draw up the context to make it all more engaging) 
+
+Example elicitation: 
+How could we find some people’s birthdays?
+
+Example response:
+Social media posts might be pretty obvious when a bunch of people say ‘happy birthday’ to someone. If you’re watching a possible server admin on social media, this could be a useful bit of info.
+
+So, assume we build an automation to crawl over social media posts of our targets in a company, and we sleuth out 14 possible birthdays. (I rolled an unfortunately high 5, 6, 3 on these initial dice)
+
+In an in-person class, I would actually roll the dice to come up with a random number on the spot. This is one of those little things that promotes engagement, since I’d encourage students to respond by letting them roll a die when they give the suggestion. That way it feels more like “their” number rather than something arbitrary from a textbook.
+
+Let’s go a bit faster through the others:
+Birthdays - social media spider collects date info from spikes where the keyword “birthday” is mentioned on somoene’s timeline
+	- 14 items (from initial 3d6 roll)
+
+Usernames - re-used user-named from apps like discord, mobile phone apps, or re-used aliases from online forums.
+	- 11 items (from initial 3d6 roll)
+
+Passwords - dumpster diving and recovering improperly disposed documents (if paper seems unlikely, then improperly disposed of hard-drives might have recoverable information on them).
+	- 12 items (from initial 3d6 roll)
+
+All above average on the rolls, we got our work cut out for us. Currently, we stand at 12 * 14 * 11 items, or 1848 possibilities. Sure adds up fast, doesn’t it? 
+12 * 11 is 132 combinations just for those two, but then we have another field with 14 possibilities, so we go sky-high into 1848 combinations overall.
+
+From here on out, you get to reduce these numbers with further investigation. A lot of actual recon will involve figuring out alternate attack vectors to get important info like possible credentials. 
+
+Round 2 examples: 
+Birthdays: 
+Calling up local bakeries to elicit info (Social engineering + Out of band /supply chain attack) -
+Call up local bakeries or anyone that makes cake near Evil Corp’s office. Act as a secretary trying to set up birthday parties and figuring out estimated costs in advance, or some similar cover story. Mention that you’re new and they don’t have records of where they ordered before, but it was really good last time. This is intended to elicit information about associates from Evil Corp ordering cakes on a specific day. The social script could further be refined by using specific names of persons of interest, again, acting like the information is lost so it’s easier to ask the bakery in the moment.
+It’s also important to keep the pressure low, since you can’t expect the info to be there from a shot in the dark. Acting casual reduces suspicion a great deal.
+Also, use a burner phone, yeah?
+	- reduction roll 4 (from 1d6)
+
+14 - 4 = 10 birthdays remain
+
+
+Usernames: (from physical names)
+Physical infiltration (a social engineering ruse) -
+A student identifies an internship opportunity at Evil Corp and lands an interview with their stellar resume. Within the conversation, they ask about colleagues they would be working with, hoping to get to know them better before making a decision on taking the job or not. This is really just cover for identifying high-value targets who might be admins, which you could then follow-up on for getting more info.
+	- reduction roll 6 (from 1d6, got lucky on that one, but it was a pretty cool suggestion, so that fits)
+
+11 - 6 = 5 target usernames left
+
+Passwords:
+Previous compromise -
+passwords might already be compromised for an e-mail that we can attach to persons of interest. A past breach might expose passwords that were compromised, and then re-used because the user was just lazy.
+	- reduction roll 3 (from 1d6)
+12 - 3 = 9 passwords left
+
+Now we have 10 * 5 * 9 , or 450 combinations.
+
+We’re getting there, making a lot of progress, but not quite under our threshold of 99 attempts.
+
+Note: if things go slow, then make a suggestion to the students. If they are brainstorming well and many people want to respond, hear them out and allow for multiple reduction rolls to cut down the items further.
+With the reduction rolls, reaching one or going negative means you’ve identified a confirmed item, reducing the list to 1 for that field.
+
+Once the numbers are reduced below 99, then move on to the burp suite demonstration of actually conducting an attack simulation using the pitchfork.
+This way, the students understand the groundwork for the variables going into the attack.
+
+Further refinement is needed to have meaningful outcomes from this lesson, since "access" is somewhat an ambiguous and inconclusive ending point for a lesson.
+Could tie into lessons demonstrating data exfiltration or rootkit installing once access is achieved.
+Consider the scope of the lesson and time constraints
