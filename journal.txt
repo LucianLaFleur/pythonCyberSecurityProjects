@@ -1,3 +1,15 @@
+Aug 1:
+SMB report in document: (smb ps server exec.docx)
+brute force smb login credentials through wordlists.
+auxiliary/scanner/smb/smb_login (then set user_file and pass_file to stuff in the wordlists dir, ex: /users/share/metasploit-framework/data/wordlists/common_users.txt)
+core command: use windows/smb/psexec -> meterpreter shell after we get credentials
+
+webdav lab: (webdavreport.docx)
+enumerate over the target ip with nmap --script http-enum -sV -p 80 10.0.17.27 (the target ip)
+using davtest and given credentials, force a login
+(assumes an alternate method was used to get credentials, but with them, we now have remote access via a webdav upload)
+key msf exploit: exploit/windows/iis/iis_webdav_upload_asp
+
 July 30
 SUMMARY:
 Simulated credential stuffing attacks with burpsuite, using captured password and username lists to brute force login credentials.
