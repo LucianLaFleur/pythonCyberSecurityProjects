@@ -1,3 +1,13 @@
+August 2:
+WinRM lab report completed, 
+use crackmap.exe to brute force credentials after finding a port open on 5985, matching the WinRM service.
+SAMPLE: [crackmapexec winrm 10.4.16.48 -u administrator -p /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt] 
+Open a shell over winrm with " evil-winrm.rb "
+
+RDP exploitation completed:
+Gist: port 3333 was open, but that's not standard for any service. A scanner showed it was an rdp service, then used hydra to crack the passwords at the target ip address and target port.
+finally, "xfreerdp" let us log into the target.
+
 Aug 1:
 SMB report in document: (smb ps server exec.docx)
 brute force smb login credentials through wordlists.
