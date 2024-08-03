@@ -1,3 +1,22 @@
+Aug. 3:
+1 - windows unattend - privelege escalation using powersploit. Powershell bypass to avoid execution permission denial with command `powershell -ep bypass`
+Searches through standard file path C:\Windows\Panther\Unattend.xml or Autounattend.xml to get data.
+Hashed data decrypted via CLI using base64 -d
+powersploit runas.exe --> allowed us to open a command line prompt as admin
+open an hta server and get a reverse tcp upload to open a meterpreter session on target.
+
+2-hiding a file in metadata -
+a simple exercise hiding a text file in the metadata of another text file.
+Command line : notepad file1.txt:file2.txt will make file2.txt hidden. You can still open it from cli, but in explorer they can only open the first one.
+Memory giveaways unknown. Can seed data by doing this with a word doc and having pictures put into the dummy document to make it believably bloated.
+
+2 HSF http file server vulnerability and impersonation -
+Rejetto in metasploit attacks hsf --> rejetto_hfs_exec
+using the SeImpersonate Privilege ability for our low-level account, we can load incognito.
+list tokens to find the admin we want to impersonate (can also help with lateral movement)
+pgrep lets us move meterpreter to a stable process, after which we reload the meterpreter session by popping the exploit rejetto a second time.
+Then we can access the admin's C drive, who we're impersonating, and snoop files
+
 August 2:
 WinRM lab report completed, 
 use crackmap.exe to brute force credentials after finding a port open on 5985, matching the WinRM service.
