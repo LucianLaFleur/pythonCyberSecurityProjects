@@ -5,6 +5,11 @@ Take a look at the write-ups to view some of the training I've been doing.
 
 ...
 
+The Journal -
+  A shorthand log of activities. This puts a date to the different activities and allows for some footnotes as I reflect on the learning I upload here.
+
+...
+
 I also have some scripts involving code for different utilities and problem-solving.
 A summary of them is below:
 Code samples:
