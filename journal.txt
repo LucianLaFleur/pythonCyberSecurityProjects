@@ -1,3 +1,18 @@
+Aug. 4:
+1 - Http shellshock user agent command injection:
+nmap -sV shows port 80 with apache httpd 2.4.6, but a countdown timer running a cgi script is our real foot in the door.
+use burpsuite to send a request to the .cgi url resource, then change the user-agent to contain executable code.
+Proof of concept draws out the contents of /etc/passwd;
+could potentially be used as an upload vector in a similar scenario.
+
+2 - mimikatz hashdump, badblue
+nmap -sV shows a service with badblue running, so we search for this funny keyword in Metasploit.
+Badblue exploit gives a meterpreter session, but we need to get a hashdump.
+make the temp folder, upload mimikatz onto the target, pop open a shell, and execute mimikatz on the target itself.
+Command: lsadump::sam gives us important info like SysKey SAMKey and ntlm hashes
+command: lsadump::secrets gives us the hashes for the SysKey.
+Cracking is out-of-scope, and will take place in future labs.
+
 Aug. 3:
 1 - windows unattend - privelege escalation using powersploit. Powershell bypass to avoid execution permission denial with command `powershell -ep bypass`
 Searches through standard file path C:\Windows\Panther\Unattend.xml or Autounattend.xml to get data.
