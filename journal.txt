@@ -1,3 +1,13 @@
+Aug 5.
+1 - exploit DB C code compile:
+example of researching vulnerability based on things like os version in exploit DB.
+Upload and compile C code to remotely execute.
+
+2- ftp brute force-
+A straightforward use of hydra to brute force ftp.
+-L is the entry for logon, and -P us the tack for passwords, usually you put files in both of these like /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt
+Exploring the wordlists or finding some on github, like the rockyou text list might be good too... extraneous to the exercise though.
+
 Aug. 4:
 1 - Http shellshock user agent command injection:
 nmap -sV shows port 80 with apache httpd 2.4.6, but a countdown timer running a cgi script is our real foot in the door.
