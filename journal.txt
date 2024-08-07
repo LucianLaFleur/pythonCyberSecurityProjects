@@ -1,3 +1,22 @@
+Aug 6.
+1 - ssh login enumeration :
+	Used hydra to brute force credentials over port 22 ssh.
+	To prove we could do this on a remote system (pivoting if we did not have access to hydra, but could still send a payload through metasploit), did an alternate method of brute forcing through an auxiliart/scanner/ssh/ssh_login, using the same wordlists as in Hydra.
+	The second method is more of a leapfrog when the attack machine is not directly in contact with the target. Still a good proof of concept.
+interesting commands
+
+
+2 - command injection via print f for escalation:
+	scenario starts with a compromised machine, where the goal is privilege escalation.
+
+	operative injection, allowing the student profile to have sudo access with no password needed
+	printf ‘#! /bin/bash\necho “student ALL=NOPASSWD:ALL” >> /etc/sudoers’ > /urs/local/share/copy.sh
+
+	grep -nri “target text” /usr - looks for target text in files starting from target directory /usr in this case. 
+	(useful for finding specific calls to files or paths made in something like a shell script)
+
+
+
 Aug 5.
 1 - exploit DB C code compile:
 example of researching vulnerability based on things like os version in exploit DB.
