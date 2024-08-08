@@ -1,3 +1,14 @@
+Aug 7.
+File execution hijacking. -
+Brief, but a little complex. A pointer in an inaccessable program is hijacked by deleting the file being referenced, so we replace the target file with our own, just named the same
+In essence A.exe calls B.exe. We cannot edit the content of A or B. We can, however, delete B.exe and create a copy of /bin/bash, and name it "B".
+Then A.exe calls the renamed bash terminal copy and opens a session upon running.
+
+
+"finding_the_right_exploit_hashdump_cracking" -
+a fair example of using service scans to find a corresponding metasploit module.
+Leads into getting hashdump info and breaking a sha 512 hash.
+
 Aug 6.
 1 - ssh login enumeration :
 	Used hydra to brute force credentials over port 22 ssh.
