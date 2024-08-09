@@ -1,5 +1,7 @@
 The WRITE UPS folder contains the bulk of the work here
 
+Check the JOURNAL for the latest activity
+
 The main purpose of this Repo is to collect the lab write-ups in one place.
 Take a look at the write-ups to view some of the training I've been doing.
 
