@@ -1,3 +1,11 @@
+Aug 9 -
+wmap enumeration / directory traversal - basic database plugin loading, wmap-targets and wmap-sites loading and checking
+map finds various filed (helping with enumeration)
+
+thhp file server reverse tcp - 
+port 80 is open, so we check the version info, and find metasploit module for that.
+Shows setting up the variables, rport, lhost, rhosts, execution, and meterpreter session opening
+
 Aug 7.
 File execution hijacking. -
 Brief, but a little complex. A pointer in an inaccessable program is hijacked by deleting the file being referenced, so we replace the target file with our own, just named the same
