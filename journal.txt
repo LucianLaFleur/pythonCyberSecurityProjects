@@ -1,3 +1,9 @@
+
+aug 10 - 3 labs,
+1) xdebug vector - over port 80, if a dirb scan shows sdebug being used, it's a possible backdoor into a meterpreter session
+2) smtp haraka - haraka service over smtp has a vulnerability allowing for the upload of a reverse tcp shell, somehow. This is an incomplete demo as the params remain unresolved. Time better spent on useful tinge
+3) samba pipename exploit - a simple samba exploitation with a particular module called is_known_pipename
+
 Aug 9 -
 wmap enumeration / directory traversal - basic database plugin loading, wmap-targets and wmap-sites loading and checking
 map finds various filed (helping with enumeration)
