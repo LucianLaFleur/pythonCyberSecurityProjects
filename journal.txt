@@ -1,3 +1,25 @@
+aug 12 - 
+1) Lsass hashdump
+	got in via http file server 2.3, module rejetto_hfs_exec.
+	Post-exploit focus, ps -S explorer.exe and migrate to find the explorer process and move meterpreter session to it for stability
+	use exploit bypassuac_injection, allowing us access to an elevated session.
+	ps -S lsass.exe, then migrate
+	then hashdump; get the hashes for the Admin account for a win.
+2) multi-handler demo fail -
+	rejetto hfs exec, as before, as a foot-in-the-door
+	tricky 2 terminal session switching to use the persistance_service exploit
+	requires a second console with exploit/mutli/handler
+	Then there's some kind of reboot, but that was not able to be completed in the instruction, therefore, a fail.
+	poorly structured lab, as usual, so that wasn't exactly a learning experience...
+3) overview windows post-exploit
+	a listing of various info gathering tools that can add to the loot files of metasploit onse access is gained
+	general.
+	
+4) ps exec after smb brute force
+	smb_login module used with common_users.txt and unix_passwords.txt, finding credentials
+	use ps exec module, setting smbuser and smb pass to the credentials we found via brute force, 
+	opens meterpreter session, and we navigate to the root tog et the flag
+
 aug 11 - 
 1) vsftpd backdoor
 	port 21 ftp vulnerable for vsftpd 2.3.4
