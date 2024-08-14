@@ -1,3 +1,16 @@
+aug 13 - 
+1) keylogging - (this one's actually cool, guys!
+	explore the keylogging  features of meterpreter, showing captured key strokes
+	Also shows mini-defacement with remotely uploading a textfile to a target system.
+2) rdp change admin pass -
+	bad blue passthru as exploit foot-in-the-door
+	shows msfconsole activation of rdp through poast/windows/manage/enable_rdp.
+	not very useful IRL because RDP can be seen by the target if you are opening windows or navigating on their system remotely.
+3) upgrading shell to meterpreter -
+	some modules only open a shell session but we might want a meterpreter session running
+	typically use: sessions -u session#
+	however, we get more control over the lhost and lport by using post/multi/manage/shell_to_meterpreter
+
 aug 12 - 
 1) Lsass hashdump
 	got in via http file server 2.3, module rejetto_hfs_exec.
