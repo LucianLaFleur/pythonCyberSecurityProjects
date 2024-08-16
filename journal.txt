@@ -1,3 +1,16 @@
+aug 14 -
+1) 445 is known pipename -
+	samba over 445 might be vulnerable to is_known_pipename,
+	just need to memorize this.
+	Demo shows popping a lab with this to get a meterpreter session
+2) hashdump post exploit - 
+	geared toward linux, shows how to do post-exploit info gathering.
+	Demonstrated hashdump as well as loot in msfconsole
+3) Log clearing in windows -
+	Lots of screencap documentation shows clear before-and-after logging views.
+	Introduces the idea of covering tracks with command: clearev
+	This should be a starter-level or into in a properly organized cirriculum, as this is straightforward, relateable, and has adequate visual feedback to get the point across well.
+
 aug 13 - 
 1) keylogging - (this one's actually cool, guys!
 	explore the keylogging  features of meterpreter, showing captured key strokes
