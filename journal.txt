@@ -1,3 +1,23 @@
+Aug 19 -
+defacement via FTP (course material needs updating) -
+	-shows connecting to ftp, manipulating a file, and proving possibility of data manipulation through defacing a website
+	- many aspects of this lesson, proper, need to be improved for their poor educational content. A missed opportunity because the concept of this lab is really neat, but the execution is just a dud.
+
+short hydra brute force cracking demo -
+	- with a known service an ip address, brute force credentials
+	- below is the crux of the execution
+	Command: hydra -L /usr/share/metasploit-framework/data/wordlists/unix_users.txt -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt ip.address service
+
+
+Aug 18 - 
+short banner grab demo -
+	netcat can grab banners, but nmap  is better
+	command: nmap -sV --script=banner ip.address port
+
+bind shell-ish demo, netcat
+	- shows setting up a bind shell with the python simpleHTTPServer and netcat listener trick.
+	- very convoluted for a relatively minimal access prize, other vectors should be explored first. Heaven knows why this is covered in "basic" materials. Triage should really be performed on these lessons...
+
 Aug 17-
 big armitage demo - *VERY USEFUL TEACHING MATERIAL, lots of good screencaps here* 
 	Using the armitage GUI, shows many functionalities incuding
