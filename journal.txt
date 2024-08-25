@@ -8,6 +8,10 @@ ps exec second scenario -
 demonstrates nmap scanning :
 	get all users on target system: nmap -p445 –script smb-enum-users.nse ip.address.
 
+searchsplot association to metasploit :
+	shorter demo showing how to scan, take the output, and find a good module.
+	The focus is the inconsistent names between exploit DB documentation and the actual commands in MSFconsole. Basically, just look at the code itself for notes as to the MSFconsole id, which the official one should have, pointing to their name on CLI.
+
 Aug 24-
 ssh two-stage crack -
 	identifies ssh with a scan (the first of the two stages)
