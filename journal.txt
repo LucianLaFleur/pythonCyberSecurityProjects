@@ -1,3 +1,36 @@
+aug 25
+mysql and wordpress (Actually interesting) -
+	deals with infiltrating mysql, then manipulating the information in data tables to change a password and gain admin access to a wordpress site. 
+
+ps exec second scenario -
+	review of some ping output, for good measure and error-reading, 
+	identifies smb protocols and associated psexec metasploit script.
+demonstrates nmap scanning :
+	get all users on target system: nmap -p445 –script smb-enum-users.nse ip.address.
+
+Aug 24-
+ssh two-stage crack -
+	identifies ssh with a scan (the first of the two stages)
+	identifies users within ssh with scanner/ssh/ssh_enumusers
+	uses result users in a custom file to brute-force efficiently
+	use Hydra for brute force, then ssh with found credentials
+
+hotfix hunting - an overview of getting a foothold and enumerating a computer's basic system info like hotfixes.
+	A more comprehensive one is in the works for later
+
+Aug 21 - 
+atypical port scan -
+	large port range scanned via nmap, and we target the unrecognized results marked with '?'
+
+FTP over port 21, hydra -
+	checking for various login types
+	brute force of ftp, then using credentials to login
+
+smb psexec, enum4 linux - 
+	focused more on the post-exploit side of things,
+	shows collecting information, maintaining persistance with various modules
+	also demonstrates getting a post-exploit hash-dump from the target
+
 Aug 19 -
 defacement via FTP (course material needs updating) -
 	-shows connecting to ftp, manipulating a file, and proving possibility of data manipulation through defacing a website
