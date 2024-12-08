@@ -1,3 +1,14 @@
+Dec 8 (2024),
+Updated encryption/decryption demo to generate textfiles from CLI text input.
+- more complex keywords can be managed, but requires secrecy of that complex keyword or else it could be intercepted.
+- XOR of hashes on each character works, even if notepad can't read some special UTF characters (even illegible data is intact for proper decryption)
+
+ELK demo from Day 3 advent of cyber: (THM platform)
+An overview of using the Elasticsearch, Logstash, and Kibana, combined suite and key functions of the suite including:
+-filtering dates, ip addresses, and other key characteristics
+-correlating behavior reported in the details of events to actions taken by users
+-re-creating logged behavior to see if a vulnerability could be reproduced
+
 Dec 7,
 XOR letter encryption/decryption demo
 (another XOR) md5 message Encrypt also made.
