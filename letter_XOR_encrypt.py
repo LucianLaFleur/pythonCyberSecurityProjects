@@ -19,7 +19,7 @@ def xor_encrypt(message, key):
 def xor_decrypt(encrypted, key):
     return ''.join(chr(ord(c) ^ ord(key)) for c in encrypted)
 
-with open("dumyTxt.txt", "r", encoding="UTF-8") as file:
+with open("myPlaintextMessage.txt", "r", encoding="UTF-8") as file:
     # Read the entire file content as a string
     message = file.read() 
 
