@@ -1,3 +1,7 @@
+Dec 7,
+XOR letter encryption/decryption demo
+(another XOR) md5 message Encrypt also made.
+
 aug 25
 mysql and wordpress (Actually interesting) -
 	deals with infiltrating mysql, then manipulating the information in data tables to change a password and gain admin access to a wordpress site. 
