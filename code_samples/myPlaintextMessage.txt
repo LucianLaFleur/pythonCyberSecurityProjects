@@ -1,0 +1,3 @@
+this is my sample text, read in encryption demonstrations 
+like the XOR and md5 hashing programs
+these letters are just keystrokes for content to prove the demo.
