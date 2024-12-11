@@ -3,6 +3,18 @@ Updated encryption/decryption demo to generate textfiles from CLI text input.
 - more complex keywords can be managed, but requires secrecy of that complex keyword or else it could be intercepted.
 - XOR of hashes on each character works, even if notepad can't read some special UTF characters (even illegible data is intact for proper decryption)
 
+ELK writeup:
+An overview of using the Elasticsearch, Logstash, and Kibana, combined suite and key functions of the suite including:
+-filtering dates, ip addresses, and other key characteristics
+-correlating behavior reported in the details of events to actions taken by users
+-re-creating logged behavior to see if a vulnerability could be reproduced
+
+Day 5 Advent of cyber XML External Entity:
+Using burpsuite to capture web server data, then capturing a request to send to intruder. 
+Using a predictable formatting for pathing, we can guess /www/var/html is the root for the web server’s file structure. This path is a given; the rest we can do from the URL.
+From enumeration, we see that submitting an item (like adding to cart) gives us a /wish/wish#.txt format (new dir, and a file containing the order info); here, “wishes” are like carts of items.
+The payload of numbers makes sense, so we mark the numerical identifier for all items before our own, assuming we’re the highest one sequentially since we just sent out request a moment ago.
+
 ELK demo from Day 3 advent of cyber: (THM platform)
 An overview of using the Elasticsearch, Logstash, and Kibana, combined suite and key functions of the suite including:
 -filtering dates, ip addresses, and other key characteristics
