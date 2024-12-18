@@ -3,8 +3,8 @@ import sys
 
 # modify the target for whatever the target url is
 target = "http://127.0.0.1:4444"
-username_file = "myPasswords.txt"
-passwords = "top-100.txt"
+username_file = "myUsernames.txt"
+passwords = "myPasswords.txt"
 needle = "Welcome"
 
 usernames = []
