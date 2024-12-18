@@ -6,3 +6,4 @@ web brute:
 takes an input (myUsernames.txt) defined in the code itself, for a list of usernames to try.
 similarly has a password input (myPasswords.txt) 
 looks for a response containing the word indicated in the "needle", assuming "welcome" is on the responding webpage
+Targets the given IP address and port; may require connecting over a web portal
