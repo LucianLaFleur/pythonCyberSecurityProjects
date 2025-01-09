@@ -17,7 +17,10 @@ The simplest example is the word selector and most complex is multilingual psych
 - the order of the word-types is random (even if you have  noun, adj., verb as your first 3 lists, the randomizer can choose any order or repeat the same type)
 - repeats of words are allowed, and considered extremely rare and random if so (might be improved on to have dliberate repetition for boosting human memory and password entropy)
 - words are joined by one single underscore. This spacer can easily be modified by on the [ "_".join(output_string) ] call on line 61.
-
+</br> Ex:
+</br> python simple_word_selector.py
+</br> --- your simple string ---------------
+</br> corde_fuaim_lecture
 <h2> multilingual psycho pass: </h2> </br>
 - combines leet letters and simple word selector capabilities into a bigger program
 - Capabilities from the simple_word_selector are available at the bottom, but the function is commented out. You can also get a random string if you want, so I kept it packaged together because I'm going to use it in a demo recording in the future
