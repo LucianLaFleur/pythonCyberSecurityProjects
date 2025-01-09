@@ -8,9 +8,9 @@ The simplest example is the word selector and most complex is multilingual psych
 - randomizes capitalization of letters, even if not a special letter
 - Purpose: I saw a lot of leet-speak when doing CTFs, so this tool helps quickly make them
 Ex: 
-`Input a string you want in L33t letters, randomized:
+> "Input a string you want in L33t letters, randomized:
 >> the clock struck twelve and the mouse ran down
-+h3 cLOCk stRu(k tw37^e @nd t#3 mOU#3 raN DOWN`
++h3 cLOCk stRu(k tw37^e @nd t#3 mOU#3 raN DOWN"
 
 <h2> simple word selector: </h2> </br>
 - A randomizer that uses the text files included in this directory to choose random words
