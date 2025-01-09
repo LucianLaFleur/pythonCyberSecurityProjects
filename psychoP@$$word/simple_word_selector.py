@@ -42,5 +42,5 @@ def generate_simple_string():
     final_string = '_'.join(output_string)
     print(final_string)
 
-print("--- and a simple string ---------------")
+print("--- your simple string ---------------")
 generate_simple_string()
