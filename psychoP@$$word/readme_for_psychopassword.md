@@ -7,7 +7,7 @@ The simplest example is the word selector and most complex is multilingual psych
 - replaces a portion of characters with l33t character if eligable (like a -> @ or a -> 4)
 - randomizes capitalization of letters, even if not a special letter
 - Purpose: I saw a lot of leet-speak when doing CTFs, so this tool helps quickly make them
-Ex: 
+</br>Ex: 
 </br> "Input a string you want in L33t letters, randomized:
 </br> >> the clock struck twelve and the mouse ran down
 </br> +h3 cLOCk stRu(k tw37^e @nd t#3 mOU#3 raN DOWN
