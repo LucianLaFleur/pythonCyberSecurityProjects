@@ -1,0 +1,66 @@
+Hard-ish to read, but exposed: js, inc, as, images
+
+*******************************************************
+* Wfuzz 2.4.5 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://10.10.109.57/content/FUZZ
+Total requests: 220557
+
+===================================================================
+ID           Response   Lines    Word     Chars       Payload        
+===================================================================
+
+000000002:   200        35 L     151 W    2198 Ch     "#"            
+000000001:   200        35 L     151 W    2198 Ch     "# directory-li
+                                                      st-2.3-medium.t
+                                                      xt"            
+000000003:   200        35 L     151 W    2198 Ch     "# Copyright 20
+                                                      07 James Fisher
+                                                      "              
+000000005:   200        35 L     151 W    2198 Ch     "# This work is
+                                                       licensed under
+                                                       the Creative C
+                                                      ommons"        
+000000014:   200        35 L     151 W    2198 Ch     ""             
+000000012:   200        35 L     151 W    2198 Ch     "# on atleast 2
+                                                       different host
+                                                      s"             
+000000013:   200        35 L     151 W    2198 Ch     "#"            
+000000011:   200        35 L     151 W    2198 Ch     "# Priority ord
+                                                      ered case sensa
+                                                      tive list, wher
+                                                      e entries were 
+                                                      found"         
+000000016:   301        9 L      28 W     321 Ch      "images"       
+000000004:   200        35 L     151 W    2198 Ch     "#"            
+000000006:   200        35 L     151 W    2198 Ch     "# Attribution-
+                                                      Share Alike 3.0
+                                                       License. To vi
+                                                      ew a copy of th
+                                                      is"            
+000000007:   200        35 L     151 W    2198 Ch     "# license, vis
+                                                      it http://creat
+                                                      ivecommons.org/
+                                                      licenses/by-sa/
+                                                      3.0/"          
+000000008:   200        35 L     151 W    2198 Ch     "# or send a le
+                                                      tter to Creativ
+                                                      e Commons, 171 
+                                                      Second Street,"
+000000009:   200        35 L     151 W    2198 Ch     "# Suite 300, S
+                                                      an Francisco, C
+                                                      alifornia, 9410
+                                                      5, USA."       
+000000010:   200        35 L     151 W    2198 Ch     "#"            
+000000953:   301        9 L      28 W     317 Ch      "js"           
+000002190:   301        9 L      28 W     318 Ch      "inc"          
+000003320:   301        9 L      28 W     317 Ch      "as"           
+000003601:   301        9 L      28 W     322 Ch      "_themes"      
+000003808:   301        9 L      28 W     325 Ch      "attachment"   
+000045240:   200        35 L     151 W    2198 Ch     ""             
+
+Total time: 270.9183
+Processed Requests: 220557
+Filtered Requests: 220536
+Requests/sec.: 814.1087
