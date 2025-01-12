@@ -54,3 +54,18 @@
 - /env is a priority if found with suid bit set
 </br> From GTFO bins
 </br> <b>/path/to/env /bin/sh -p</b>
+
+</br> 4) Blue (tryHackMe)
+- nmap script scan looking for common vulns
+</br> <b> nmap -sV -sC --script vuln -oN scanBlue.txt 10.10.73.63 </b>
+- msfconsole search (used on exploit name found from external research from CVE hits found in the nmap scan)
+- msfconsole basic usage of an exploit (reading and understanding options is important)
+- <b> search shell_to_meterpreter</b> for escalating from basic shell to meterpreter
+  </br> backgrounding with ctrl + z , and managing sessions
+  </br> <b> session -i 1 </b> to interact with session id 1 and bring it from background to foreground.
+- migrate process to spoolsv.exe, finding its process with <b>ps</b>
+- hashdump -> get hash info from meterpreter session
+- cracking with jon the ripper
+<br> <b> echo ‘name:1000:hashpt1:hashpt2:::’ > myhash.txt</b> (get hash into text file quick)
+<br> (process textfile by jon the ripper) <b>john myhash.txt --format=NT --wordlist=/usr/share/wordlists/rockyou.txt </b>
+- SAM file is located in <b>  C://windows/System32/config </b>
