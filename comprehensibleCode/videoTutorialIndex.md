@@ -3,7 +3,7 @@
 ---
 Template:
 <h2>title</h2>
-- link
-- main syntax
-- description
+</br>- link
+</br>- main syntax
+</br>- description
 ---
