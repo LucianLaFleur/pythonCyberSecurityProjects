@@ -1,8 +1,8 @@
-#Video Links for Various patterns
+<h1>Video Links for Various patterns</h1>
 
 ---
 Template:
-#title
+<h2>title</h2>
 - link
 - main syntax
 - description
