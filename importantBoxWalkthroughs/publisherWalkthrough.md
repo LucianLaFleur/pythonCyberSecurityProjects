@@ -25,7 +25,8 @@ Progress: 220557 / 220558 (100.00%)
 This term was also all over the base website. 
 Noted "spip" for possible searchsploit term.
 Wappalyzer shows us what it's built with
-![[spipReveal1.png]]
+obsidian://open?vault=cybersecurity&file=imgs%2FspipReveal1.png
+
 /images 
 does not have any apparent upload place or path. Deemed low-priority since nothing from clicking around gave anything interesting.
 Parent directory only went back to main webpage
