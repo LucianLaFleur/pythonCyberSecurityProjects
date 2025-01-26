@@ -146,7 +146,10 @@ dataset:$keepass$*2*100000*222*2114f635de17709ecc4a2be2c3403135ffd7c0dd09084c4ab
 ```
 john hashTxt.hash --wordlist=/usr/share/wordlists/rockyou.txt
 ```
+
 ![noteFormattingOfHash234324](https://github.com/user-attachments/assets/29014732-fb2b-47ce-af38-c35d7bb8f182)
+![returnedPas2](https://github.com/user-attachments/assets/7461b02d-154c-4dd6-8f76-e2daccc73382)
+
 </br>returned data:  *741852963*       (dataset)
 </br> the we need to open the .kdbx file
 </br>*keepassxc dataset.kdbx *
@@ -159,7 +162,6 @@ john hashTxt.hash --wordlist=/usr/share/wordlists/rockyou.txt
 </br> the program returns the following pass info
 </br>note the username:sysadmin
 </br> pass: Cl0udP4ss40p4city#8700
-![returnedPas2](https://github.com/user-attachments/assets/7461b02d-154c-4dd6-8f76-e2daccc73382)
 
 </br>ssh into the sysadmin with the credentials:
 </br> ssh sysadmin@<ip>
