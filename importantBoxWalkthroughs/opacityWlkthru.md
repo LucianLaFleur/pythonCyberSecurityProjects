@@ -151,8 +151,18 @@ dataset:$keepass$*2*100000*222*2114f635de17709ecc4a2be2c3403135ffd7c0dd09084c4ab
 john hashTxt.hash --wordlist=/usr/share/wordlists/rockyou.txt
 ```
 ![noteFormattingOfHash234324](https://github.com/user-attachments/assets/29014732-fb2b-47ce-af38-c35d7bb8f182)
+</br>returned data:  *741852963*       (dataset)
+</br> the we need to open the .kdbx file
+</br>*keepassxc dataset.kdbx *
+</br> enter pass:  741852963
+![insidePanel34](https://github.com/user-attachments/assets/d55d27fe-360b-4038-af2a-a65a53bc493f)
+</br> we can reveal the password by clicking on the eye-like icon
+![passleak3](https://github.com/user-attachments/assets/625cf759-a495-48c0-89ac-ac58a9293266)
+
 
 </br> the program returns the following pass info
 </br>note the username:sysadmin
 </br> pass: Cl0udP4ss40p4city#8700
 ![returnedPas2](https://github.com/user-attachments/assets/7461b02d-154c-4dd6-8f76-e2daccc73382)
+
+</br> navi
