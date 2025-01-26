@@ -61,9 +61,6 @@ just a test with putting in potato.txt
 </br>  mod the port to 1984 because, haha, funny.
 ![resetAndRedo](https://github.com/user-attachments/assets/ccb8d61c-81de-4826-a911-6113839c265f)
 
-
-![shellMod1](https://github.com/user-attachments/assets/89e66405-e2f1-4925-abcb-5edb00a7793f)
-
 </br>spin up the python server so we can give the shell to the uploader
 </br>python -m SimpleHTTPServer 7737
 </br>
