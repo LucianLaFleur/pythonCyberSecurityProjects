@@ -171,7 +171,7 @@ john hashTxt.hash --wordlist=/usr/share/wordlists/rockyou.txt
 </br> (show what items are in the current DIR and who has what perms)
 </br> sysadmin has ownership permissions over "lib" but a bunch of the stuff inside is run by root
 </br> ![ownedByRootRunByRoot](https://github.com/user-attachments/assets/839cbdfe-4bbe-407b-948e-f2cc0c034fe6)
-</br>  we can go into scripts and reat this .php file
+</br>  we can go into scripts and read this .php file
 </br> we want to look for FILE PATHS that could allow us to execute more stuff
 ![oddfilanadpathfound32434](https://github.com/user-attachments/assets/cfb7955d-752f-48eb-9b9c-163580be3dd1)
 
