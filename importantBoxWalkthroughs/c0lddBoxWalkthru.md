@@ -1,4 +1,4 @@
-nmap -p- -T5 10.10.121.78 -v
+</br>nmap -p- -T5 10.10.121.78 -v
 
 PORT     STATE SERVICE
 80/tcp   open  http
