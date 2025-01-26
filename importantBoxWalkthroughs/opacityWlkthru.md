@@ -84,8 +84,8 @@ just a test with putting in potato.txt
 
 
 
-To fool the check for an image, we can bypass with #anything.png
-but we need to delete the hashtag and trailing junk when executing the file via URL.
+</br> To fool the check for an image, we can bypass with #anything.png
+</br> but we need to delete the hashtag and trailing junk when executing the file via URL.
 ![wrongNameShouldBeShell1](https://github.com/user-attachments/assets/8e53fa79-8134-45c1-a2f3-791f753cb765)
 
 
@@ -128,6 +128,31 @@ but we need to delete the hashtag and trailing junk when executing the file via 
 
 ![managednorr23r](https://github.com/user-attachments/assets/30ffb52b-b3d1-42f1-85b3-fec6a2c3b0ef)
 
-got raw text for python file keepass2john from here : https://github.com/ivanmrsulja/keepass2john
+</br>  got raw text for python file keepass2john from here : https://github.com/ivanmrsulja/keepass2john
+
+</br>  I copied the code from https://github.com/ivanmrsulja/keepass2john/blob/master/keepass2john.py and put it into a python file </br> with nano calling it testconverter.py, and running it with python 3
+```
+python3 testconverter.py dataset.kdbx > outdata.hash
+```
+
+</br> note that I used nano to mae this
+![nanorawshitbecausefuckyou3](https://github.com/user-attachments/assets/1b2f9403-e35b-4a46-a087-05356edb9145)
 
 
+</br> outdata.hash will be messed up so you have to watch the output from this raw python run
+</br> I, for example, saved it to hashTxt.hash.
+</br> Make sure the file is headed specifically by `dataset:$keepass$*`
+</br> as shown below in the raw text of the hash.
+```
+dataset:$keepass$*2*100000*222*2114f635de17709ecc4a2be2c3403135ffd7c0dd09084c4abe1d983ad94d93a5*2bceccca0facfb762eb79ca66588135c72a8835e43d871977ff7d3e9db0ffa17*cae9a25c785fc7f16772bb00bac5cc82*b68e2c3be9e46e8b7fc05eb944fad8b4ec5254a40084a73127b4126408b2ff46*b0afde2bd0db881200fc1c2494baf7c28b7486f081a82e935411ab72a27736b4
+```
+</br> that hash format is needed for john the ripper to crack it
+```
+john hashTxt.hash --wordlist=/usr/share/wordlists/rockyou.txt
+```
+![noteFormattingOfHash234324](https://github.com/user-attachments/assets/29014732-fb2b-47ce-af38-c35d7bb8f182)
+
+</br> the program returns the following pass info
+</br>note the username:sysadmin
+</br> pass: Cl0udP4ss40p4city#8700
+![returnedPas2](https://github.com/user-attachments/assets/7461b02d-154c-4dd6-8f76-e2daccc73382)
