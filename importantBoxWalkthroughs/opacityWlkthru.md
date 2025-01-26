@@ -165,4 +165,33 @@ john hashTxt.hash --wordlist=/usr/share/wordlists/rockyou.txt
 </br> pass: Cl0udP4ss40p4city#8700
 ![returnedPas2](https://github.com/user-attachments/assets/7461b02d-154c-4dd6-8f76-e2daccc73382)
 
-</br> navi
+</br>ssh into the sysadmin with the credentials:
+</br> ssh sysadmin@<ip>
+</br> and use the pass:  Cl0udP4ss40p4city#8700
+</br> 
+</br> *ls -laR scripts/ *
+</br> (show what items are in the current DIR and who has what perms)
+</br> sysadmin has ownership permissions over "lib" but a bunch of the stuff inside is run by root
+</br> ![ownedByRootRunByRoot](https://github.com/user-attachments/assets/839cbdfe-4bbe-407b-948e-f2cc0c034fe6)
+</br>  we can go into scripts and reat this .php file
+</br> we want to look for FILE PATHS that could allow us to execute more stuff
+![oddfilanadpathfound32434](https://github.com/user-attachments/assets/cfb7955d-752f-48eb-9b9c-163580be3dd1)
+
+</br> this appears to be something running on a crontab, where the target file is executed regularly
+</br> view crontab, but nothing's out of place
+![nothingListedINCrontabButPhpisChronic](https://github.com/user-attachments/assets/c9ce6e7c-3c20-42c7-96d4-30c51c621ab4)
+</br>  we can navigate to the file targeted by the script
+![gotbackupfilein](https://github.com/user-attachments/assets/37efb18e-f9cb-4f4b-9a09-36c0d4f74206)
+</br> delete the file with that name and make a new one in is place
+</br> rm backup.inc.php
+</br> nano backup.inc.php (now with our own code)
+</br>`<?php system( "chmod +s /bin/bash");?>`
+</br> (does a php breakout with suid bit set
+![newphpesc](https://github.com/user-attachments/assets/b8d2da73-017c-4d40-b58d-f1ef3639367d)
+
+</br>will allow us to spawn a root session if we go and do /bin/bash -p
+</br>Note, this has to be done from /scripts, the same folder where script.php is, since we won't have the same path if we're in /lib.
+</br> from /scripts, spawns a root shell session
+
+![wergwhtr](https://github.com/user-attachments/assets/35f26bb8-d86e-4f91-b826-da29620a724c)
+
