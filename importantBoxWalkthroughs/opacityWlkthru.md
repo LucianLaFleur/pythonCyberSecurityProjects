@@ -114,7 +114,6 @@ just a test with putting in potato.txt
 
 </br> this allows us to wget it without needing to host a server, as the web server is GET-able.
 </br>  wget 10.10.220.22/dataset.kdbx
-![gotItLocally](https://github.com/user-attachments/assets/2c5ad734-b8ae-4445-97d4-c4459b1955c9)
 
 </br> busting.kdbx is not available via a google dork...
 </br> eat dirt, google
