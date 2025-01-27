@@ -77,10 +77,6 @@ just a test with putting in potato.txt
 
 ![getNewUpload](https://github.com/user-attachments/assets/08e80277-27e2-4a59-bdb1-0a8d33b69f12)
 
-
-
-
-
 </br> To fool the check for an image, we can bypass with #anything.png
 </br> but we need to delete the hashtag and trailing junk when executing the file via URL.
 ![wrongNameShouldBeShell1](https://github.com/user-attachments/assets/8e53fa79-8134-45c1-a2f3-791f753cb765)
@@ -131,7 +127,7 @@ just a test with putting in potato.txt
 python3 testconverter.py dataset.kdbx > outdata.hash
 ```
 
-</br> note that I used nano to mae this
+</br> note that I used nano to make this
 ![nanorawshitbecausefuckyou3](https://github.com/user-attachments/assets/1b2f9403-e35b-4a46-a087-05356edb9145)
 
 
