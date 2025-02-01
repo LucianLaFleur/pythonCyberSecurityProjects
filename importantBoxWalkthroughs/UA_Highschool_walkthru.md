@@ -35,13 +35,13 @@ MAC Address: 02:B3:8F:7B:A4:5B (Unknown)
 ![assetsMustExist](https://github.com/user-attachments/assets/cb2a2ae8-2f20-4836-b66e-05a4ff919356)
 </br> contact page might be an injection vector... added to notes
 ![possibleInjectionVector](https://github.com/user-attachments/assets/7176c187-0b97-45ce-b7bf-670ddc2d9d42)
-</br> images exist but are forbidden
-![imagesExistsButForbidden](https://github.com/user-attachments/assets/d35b5117-bec2-424c-b781-ce886167ace4)
 
 </br> fuzzing deeper -->
 </br> `wfuzz -c -f sub-fighter -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --hw 31 http://10.10.254.41:80/assets/FUZZ`
 </br> seemingly there's nothing we can access here, since images is forbidden...
-</br> BRICK WALL ... I hate this
+</br> images exist but are forbidden
+![imagesExistsButForbidden](https://github.com/user-attachments/assets/d35b5117-bec2-424c-b781-ce886167ace4)
+
 </br> hunting through more wordlists since this can't be the comprehensive be-all-end-all...
 </br> `wfuzz -c -f sub-fighter -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-words.txt --hw 31 http://10.10.254.41:80/assets/FUZZ`
 ![okayTheresHiddenStuffWithdots](https://github.com/user-attachments/assets/0db489e5-f311-4f41-99d5-d1837ac37b42)
