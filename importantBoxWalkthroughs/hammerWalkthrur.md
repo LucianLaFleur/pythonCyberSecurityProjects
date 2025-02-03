@@ -195,19 +195,20 @@ for thread in threads:
 </br> got some kind of input field on the page with the user flag...
 </br> okay, now I'm getting booted out after a few seconds, so WTF?
 </br> (no cap available for this flashing back out to the login screen... hard to show)
+</br>
 </br> argh, another timer in a cookie.
-1)open right click menu and inspect the page
-2) go to storage
-3) open cookies
-4) go to persistent session
-5) change the day up by a few to boost longevity of sessions
+</br>1)open right click menu and inspect the page
+</br>2) go to storage
+</br>3) open cookies
+</br>4) go to persistent session
+</br>5) change the day up by a few to boost longevity of sessions
 ![ewqbwuerew](https://github.com/user-attachments/assets/289cca6a-acda-4bde-bdb5-f30782f071dc)
 </br> to be clear "persistent session" and the numeral for days can be updated and it'll auto-update the rest
 ![increaseTo11TOGiveFewHours](https://github.com/user-attachments/assets/33e95573-8a3c-4deb-b196-1d344d257e96)
 </br> in our input field, try commands, I lucked out on `ls`
 </br> we find some kind of key at the top
 ![niceKey1](https://github.com/user-attachments/assets/e9b29b7d-3eb6-4daf-a2fc-fbf11948191e)
-
+</br>
 </br> There's a kind of validation for files with JWT 
 </br> we're only really interested in the auth field in the cap below
 ![authAndTokenGot324](https://github.com/user-attachments/assets/5ed69fab-f6f0-4316-8923-687e53e12e72)
