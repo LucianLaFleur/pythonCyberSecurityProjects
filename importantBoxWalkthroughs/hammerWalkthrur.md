@@ -228,7 +228,7 @@ for thread in threads:
 </br> bottom after ^^
  </br> documented key content : `56058354efb3daa97ebab00fabd7a7d7`
  </br> full JWT token for injection, documented: (Which I've not seen in other walkthroughs, when this is CLEARLY essential)
-```eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6Ii92YXIvd3d3L2h0bWwvMTg4YWRlMS5rZXkifQ.eyJpc3MiOiJodHRwOi8vaGFtbWVyLnRobSIsImF1ZCI6Imh0dHA6Ly9oYW1tZXIudGhtIiwiaWF0IjoxNzM4NTQ4NTg3LCJleHAiOjE3Mzg1NTIxODcsImRhdGEiOnsidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0ZXJAaGFtbWVyLnRobSIsInJvbGUiOiJhZG1pbiJ9fQ.Q--Sg4HKxp2KwjDNJCjm8atUo0qhM8JZCDJcrjoSf4A```
+`eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6Ii92YXIvd3d3L2h0bWwvMTg4YWRlMS5rZXkifQ.eyJpc3MiOiJodHRwOi8vaGFtbWVyLnRobSIsImF1ZCI6Imh0dHA6Ly9oYW1tZXIudGhtIiwiaWF0IjoxNzM4NTQ4NTg3LCJleHAiOjE3Mzg1NTIxODcsImRhdGEiOnsidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0ZXJAaGFtbWVyLnRobSIsInJvbGUiOiJhZG1pbiJ9fQ.Q--Sg4HKxp2KwjDNJCjm8atUo0qhM8JZCDJcrjoSf4A`
 </br> use burpsuite to capture a junk command, hit enter, like doing "ls" again (just make sure intercept is on)
 </br> send it to repeater
 ![ybeuigbwreugorieg](https://github.com/user-attachments/assets/c23dc98f-ecbe-48f2-82af-e20e918c61c9)
