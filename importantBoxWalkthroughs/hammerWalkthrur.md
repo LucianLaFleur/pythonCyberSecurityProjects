@@ -165,7 +165,6 @@ for thread in threads:
     thread.join()
 ```
 
-</br> gibbon
 </br> let's try another way
 </br> make a manual txt file with all 4 digit codes 
 </br> 
@@ -213,9 +212,9 @@ for thread in threads:
 </br> we're only really interested in the auth field in the cap below
 ![authAndTokenGot324](https://github.com/user-attachments/assets/5ed69fab-f6f0-4316-8923-687e53e12e72)
 
-
-saved multiple versions of the key, but eventually learned the essence:
-it needs 3 parts : use the site `jwt.ioi` to convert the jwt information into editable stuff on the right
+</br> 
+</br> saved multiple versions of the key, burning a lot of tie, but eventually learned the essence:
+</br> it needs 3 parts : use the site `jwt.ioi` to convert the jwt information into editable stuff on the right
 1) use key file in /var/www/html/188ade1.key (top)
 2) use "admin" as role (mid)
 3) get your secret code from the key file we got from the server
@@ -227,8 +226,17 @@ it needs 3 parts : use the site `jwt.ioi` to convert the jwt information into ed
  </br> bottom before ^^
  ![inut23r](https://github.com/user-attachments/assets/ae9d8dd4-49a1-40fa-b63c-a548c40ddb2b)
 </br> bottom after ^^
-
-56058354efb3daa97ebab00fabd7a7d7
+ </br> documented key content : `56058354efb3daa97ebab00fabd7a7d7`
+ </br> full JWT token for injection, documented: (Which I've not seen in other walkthroughs, when this is CLEARLY essential)
 ```
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6Ii92YXIvd3d3L2h0bWwvMTg4YWRlMS5rZXkifQ.eyJpc3MiOiJodHRwOi8vaGFtbWVyLnRobSIsImF1ZCI6Imh0dHA6Ly9oYW1tZXIudGhtIiwiaWF0IjoxNzM4NTQ4NTg3LCJleHAiOjE3Mzg1NTIxODcsImRhdGEiOnsidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0ZXJAaGFtbWVyLnRobSIsInJvbGUiOiJhZG1pbiJ9fQ.Q--Sg4HKxp2KwjDNJCjm8atUo0qhM8JZCDJcrjoSf4A
 ```
+</br> use burpsuite to capture a junk command, hit enter, like doing "ls" again (just make sure intercept is on)
+</br> send it to repeater
+![ybeuigbwreugorieg](https://github.com/user-attachments/assets/c23dc98f-ecbe-48f2-82af-e20e918c61c9)
+![executionewtio34nt](https://github.com/user-attachments/assets/bf421c8c-2573-4beb-a911-33dbd90a29bc)
+</br> update our header token with the crafted JWT as documented above, which changes us to admin and uses that secret key for authentication.
+</br> proof that we can now send any command -->
+</br> the goal was to read a specific file, as shown in the screencap (blurred out the answer to the room)
+</br>
+![otput34changCOMMAND](https://github.com/user-attachments/assets/805b08b0-6b71-455e-bf7f-df1ef099ec1e)
