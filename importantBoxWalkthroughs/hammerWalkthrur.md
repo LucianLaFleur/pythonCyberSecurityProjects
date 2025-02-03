@@ -1,15 +1,15 @@
 </br> basic scan as always
 </br>nmap -sT -p- -T4 10.10.30.177 -v
-```
-PORT     STATE SERVICE
-22/tcp   open  ssh
-1337/tcp open  waste
-```
+</br>
+</br>PORT     STATE SERVICE
+</br>22/tcp   open  ssh
+</br>1337/tcp open  waste
+</br>
 </br>
 </br> nmap 22,1337 -A 10.10.30.177 -v
-```
-22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)
-```
+</br>
+</br>22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)
+</br>
 </br>1337 doesn't even come up when indicated... umm? maybe http?
 ![loginPageHammer](https://github.com/user-attachments/assets/5d4d4ab8-fa95-47e7-b300-4a7d02ec5ae9)
 
