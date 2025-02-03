@@ -224,11 +224,11 @@ for thread in threads:
   ![copySecretAmount](https://github.com/user-attachments/assets/a58e988a-b304-4088-9a7f-8d86c4b4cf9d)
 </br> 4) input secret key code in cyan part for "verify signature (bottom)
 </br> the screencap below is WRONG, the key is in `var/www/html/188ade1.key` and is why one iteration did not work
-![i23bur23r](https://github.com/user-attachments/assets/2a50d0ba-4380-48d2-b877-cabc08cb7021)
+</br>![i23bur23r](https://github.com/user-attachments/assets/2a50d0ba-4380-48d2-b877-cabc08cb7021)
  </br> top and mid ^^
- ![inputsecretshit](https://github.com/user-attachments/assets/877b6fbb-c519-42d2-ab9b-82207d0a2471)
+ </br>![inputsecretshit](https://github.com/user-attachments/assets/877b6fbb-c519-42d2-ab9b-82207d0a2471)
  </br> bottom before ^^
- ![inut23r](https://github.com/user-attachments/assets/ae9d8dd4-49a1-40fa-b63c-a548c40ddb2b)
+ </br>![inut23r](https://github.com/user-attachments/assets/ae9d8dd4-49a1-40fa-b63c-a548c40ddb2b)
 </br> bottom after ^^
 </br>
  </br> documented key content : `56058354efb3daa97ebab00fabd7a7d7`
