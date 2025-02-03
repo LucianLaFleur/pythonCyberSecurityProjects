@@ -22,7 +22,7 @@
 </br>`sed 's/^/hmr_/' /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-medium-words.txt > modified_wordlist.txt`
 ![hmrAdded1](https://github.com/user-attachments/assets/482b96da-1a91-4612-925a-21a89fde74e1)
 </br>
-</br>`gobuster dir -u http://10.10.166.252:3333 -w modified_wordlist.txt`
+</br>`gobuster dir -u http://10.10.166.252:1337 -w modified_wordlist.txt`
 </br>
 </br>
 ![enumer1](https://github.com/user-attachments/assets/5cd144a8-421f-4f12-ae68-db3624b22438)
