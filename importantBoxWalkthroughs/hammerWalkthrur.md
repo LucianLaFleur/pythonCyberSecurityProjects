@@ -213,15 +213,16 @@ for thread in threads:
 </br> There's a kind of validation for files with JWT 
 </br> we're only really interested in the auth field in the cap below
 ![authAndTokenGot324](https://github.com/user-attachments/assets/5ed69fab-f6f0-4316-8923-687e53e12e72)
-
+</br> 
+</br> sytax for getting that key `wget http://10.10.178.157:1337/188ade1.key`
 </br> 
 </br> saved multiple versions of the key, burning a lot of tie, but eventually learned the essence:
 </br> it needs 3 parts : use the site `jwt.ioi` to convert the jwt information into editable stuff on the right
-1) use key file in /var/www/html/188ade1.key (top)
-2) use "admin" as role (mid)
-3) get your secret code from the key file we got from the server
+</br> 1) use key file in /var/www/html/188ade1.key (top)
+</br> 2) use "admin" as role (mid)
+</br> 3) get your secret code from the key file we got from the server
   ![copySecretAmount](https://github.com/user-attachments/assets/a58e988a-b304-4088-9a7f-8d86c4b4cf9d)
-4) input secret key code in cyan part for "verify signature (bottom)
+</br> 4) input secret key code in cyan part for "verify signature (bottom)
 ![i23bur23r](https://github.com/user-attachments/assets/2a50d0ba-4380-48d2-b877-cabc08cb7021)
  </br> top and mid ^^
  ![inputsecretshit](https://github.com/user-attachments/assets/877b6fbb-c519-42d2-ab9b-82207d0a2471)
