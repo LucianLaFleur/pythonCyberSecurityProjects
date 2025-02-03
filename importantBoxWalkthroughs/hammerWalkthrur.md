@@ -92,8 +92,8 @@ PORT     STATE SERVICE
 </br>
 </br> hour later, python not working. The machine spirits are not satisfied.
 </br>broken python if you want 2 hours of my life and 5 years off my lifespan...
-```
-import requests
+
+```import requests
 import random
 import time
 import threading
@@ -162,8 +162,7 @@ for code in codes:
 
 # Wait for all threads to complete
 for thread in threads:
-    thread.join()
-```
+    thread.join()```
 </br> 
 </br> let's try another way
 </br> make a manual txt file with all 4 digit codes 
