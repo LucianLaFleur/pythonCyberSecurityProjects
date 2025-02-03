@@ -162,8 +162,10 @@ for code in codes:
 
 # Wait for all threads to complete
 for thread in threads:
-    thread.join()```
-</br> 
+    thread.join()
+```
+
+</br> gibbon
 </br> let's try another way
 </br> make a manual txt file with all 4 digit codes 
 </br> 
