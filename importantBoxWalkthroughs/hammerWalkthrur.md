@@ -5,7 +5,7 @@ PORT     STATE SERVICE
 22/tcp   open  ssh
 1337/tcp open  waste
 ```
-
+</br>
 </br> nmap 22,1337 -A 10.10.30.177 -v
 ```
 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)
@@ -226,13 +226,18 @@ for thread in threads:
  </br> bottom before ^^
  ![inut23r](https://github.com/user-attachments/assets/ae9d8dd4-49a1-40fa-b63c-a548c40ddb2b)
 </br> bottom after ^^
+</br>
  </br> documented key content : `56058354efb3daa97ebab00fabd7a7d7`
+ </br>
  </br> full JWT token for injection, documented: (Which I've not seen in other walkthroughs, when this is CLEARLY essential)
 `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6Ii92YXIvd3d3L2h0bWwvMTg4YWRlMS5rZXkifQ.eyJpc3MiOiJodHRwOi8vaGFtbWVyLnRobSIsImF1ZCI6Imh0dHA6Ly9oYW1tZXIudGhtIiwiaWF0IjoxNzM4NTQ4NTg3LCJleHAiOjE3Mzg1NTIxODcsImRhdGEiOnsidXNlcl9pZCI6MSwiZW1haWwiOiJ0ZXN0ZXJAaGFtbWVyLnRobSIsInJvbGUiOiJhZG1pbiJ9fQ.Q--Sg4HKxp2KwjDNJCjm8atUo0qhM8JZCDJcrjoSf4A`
+</br>
 </br> use burpsuite to capture a junk command, hit enter, like doing "ls" again (just make sure intercept is on)
 </br> send it to repeater
+</br>
 ![ybeuigbwreugorieg](https://github.com/user-attachments/assets/c23dc98f-ecbe-48f2-82af-e20e918c61c9)
 ![executionewtio34nt](https://github.com/user-attachments/assets/bf421c8c-2573-4beb-a911-33dbd90a29bc)
+</br>
 </br> update our header token with the crafted JWT as documented above, which changes us to admin and uses that secret key for authentication.
 </br> proof that we can now send any command -->
 </br> the goal was to read a specific file, as shown in the screencap (blurred out the answer to the room)
