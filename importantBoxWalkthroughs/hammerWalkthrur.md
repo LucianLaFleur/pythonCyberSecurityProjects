@@ -60,9 +60,10 @@
 </br> check response...
 ![inputSide2](https://github.com/user-attachments/assets/d00cfcc7-af1a-46b6-bd11-b202e5459e92)
 </br> well, at least it's good sanitization
-</br> the leaked test@hammer.thm did not trigger a different message from asdf@a.com; no leads there
+</br> the leaked tester@hammer.thm did not trigger a different message from asdf@a.com; no leads there
 ![goodSanitationHere2](https://github.com/user-attachments/assets/489624f8-8290-4662-8361-23bbf68c250a)
 </br> checking `/reset_password.php`
+</br> input the email tester@hammer.thm into the field
 ![eatMyDcinergierng](https://github.com/user-attachments/assets/8673fe9d-fa5b-4c36-9b78-c7ce68b2e4c9)
 
 </br>if this is sending out a password reset code, then maybe we can intercept it with burpsuite 
