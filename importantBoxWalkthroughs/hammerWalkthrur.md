@@ -6,7 +6,7 @@
 </br>1337/tcp open  waste
 </br>
 </br>
-</br> nmap 22,1337 -A 10.10.30.177 -v
+</br> nmap 22,1337 -A -T3 10.10.30.177 -v
 </br>
 </br>22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)
 </br>
