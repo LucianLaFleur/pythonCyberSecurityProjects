@@ -235,7 +235,7 @@ echo "Thank you for your precious time!"
 </br>from the .helpline.sh file, analyzing it, we see that the msg gets passed as a command line argument. Name doesn't matter, so after it, we got code execution and should be able to spawn a /bin/bash session
 </br>
 </br>sudo -u apaar /home/apaar/.helpline.sh
-</br>-->tells you to input a nams, so I just put "my foot" as the name, arbitrary.
+</br>-->tells you to input a name, so I just put "my foot" as the name, the content being arbitrary.
 </br>--> /bin/bash then enter, and that gave me a session 
 
 </br>do the python upgrade for the shell to tty for this new instance
